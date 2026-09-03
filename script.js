@@ -1,594 +1,1269 @@
-/* =========================================================
-   KIRA AUCTION — MAIN JAVASCRIPT
-   ========================================================= */
+"use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const MOBILE_PARALLAX_BREAKPOINT = 780;
+    const REVEAL_THRESHOLD = 0.12;
+    const REVEAL_ROOT_MARGIN = "0px 0px -40px 0px";
+    const STAGGER_STEP = 70;
 
-    /* -----------------------------------------------------
-       SELECT ELEMENTS
-       ----------------------------------------------------- */
+    const state = {
+        currentPanelId: null,
+        panels: [],
+        navigationItems: [],
+        parallaxEnabled: false,
+        reducedMotion: false,
+        resizeTimer: null,
+        parallaxFrame: null,
+        pointerX: 0,
+        pointerY: 0
+    };
 
-    const navButtons = document.querySelectorAll(".nav-btn");
+    function getReducedMotionPreference() {
+        return window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
 
-    const contentPanels = document.querySelectorAll(
-        ".content-panel, .panel"
-    );
+    state.reducedMotion = getReducedMotionPreference();
 
-
-    /* -----------------------------------------------------
-       PANEL SELECTOR
-       ----------------------------------------------------- */
-
-    function getPanel(target) {
-
-        if (!target) {
+    function getPanel(panelId) {
+        if (!panelId) {
             return null;
         }
 
-        /* Try common ID patterns */
+        const normalizedId = String(panelId)
+            .replace(/^#/, "")
+            .trim();
 
-        const possibleIds = [
-            target,
-            `${target}-panel`,
-            `${target}Panel`,
-            `panel-${target}`
-        ];
-
-        for (const id of possibleIds) {
-            const element = document.getElementById(id);
-
-            if (element) {
-                return element;
-            }
+        if (!normalizedId) {
+            return null;
         }
 
-        /* Try data-target */
+        return document.getElementById(normalizedId);
+    }
 
-        const matchingPanel = document.querySelector(
-            `[data-panel="${target}"]`
-        );
+    function getPanelIdFromElement(element) {
+        if (!element) {
+            return null;
+        }
 
-        if (matchingPanel) {
-            return matchingPanel;
+        const dataTarget = element.getAttribute("data-target");
+
+        if (dataTarget) {
+            return String(dataTarget).replace(/^#/, "").trim();
+        }
+
+        const href = element.getAttribute("href");
+
+        if (href && href.indexOf("#") === 0) {
+            return href.substring(1).trim();
+        }
+
+        const dataSection = element.getAttribute("data-section");
+
+        if (dataSection) {
+            return dataSection.replace(/^#/, "").trim();
+        }
+
+        const sectionTarget = element.getAttribute("data-section-target");
+
+        if (sectionTarget) {
+            return sectionTarget.replace(/^#/, "").trim();
+        }
+
+        const fallbackId = element.getAttribute("aria-controls");
+
+        if (fallbackId) {
+            return fallbackId.trim();
         }
 
         return null;
     }
 
-
-    /* -----------------------------------------------------
-       SHOW PANEL
-       ----------------------------------------------------- */
-
-    function showPanel(target, clickedButton = null) {
-
-        /* Remove active state from all buttons */
-
-        navButtons.forEach((button) => {
-            button.classList.remove("active");
-            button.setAttribute("aria-selected", "false");
-        });
-
-
-        /* Hide all panels */
-
-        contentPanels.forEach((panel) => {
-            panel.classList.remove("active");
-            panel.setAttribute("aria-hidden", "true");
-        });
-
-
-        /* Activate clicked button */
-
-        if (clickedButton) {
-
-            clickedButton.classList.add("active");
-
-            clickedButton.setAttribute(
-                "aria-selected",
-                "true"
-            );
+    function isPanelElement(element) {
+        if (!element || element.nodeType !== Node.ELEMENT_NODE) {
+            return false;
         }
 
+        const id = element.id;
 
-        /* Find requested panel */
+        if (!id) {
+            return false;
+        }
 
-        const panel = getPanel(target);
+        const dataSection = element.getAttribute("data-section");
+
+        if (dataSection) {
+            return true;
+        }
+
+        if (element.getAttribute("role") === "tabpanel") {
+            return true;
+        }
+
+        if (element.classList.contains("panel")) {
+            return true;
+        }
+
+        if (
+            id === "terms" ||
+            id === "notes" ||
+            id === "home" ||
+            id === "dashboard"
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function collectPanels() {
+        const candidates = Array.from(
+            document.querySelectorAll(
+                "[data-section], [role='tabpanel'], .panel, #terms, #notes"
+            )
+        );
+
+        const uniquePanels = [];
+
+        candidates.forEach(function (element) {
+            if (!isPanelElement(element)) {
+                return;
+            }
+
+            if (uniquePanels.indexOf(element) === -1) {
+                uniquePanels.push(element);
+            }
+        });
+
+        state.panels = uniquePanels;
+
+        state.panels.forEach(function (panel) {
+            panel.setAttribute("role", "tabpanel");
+
+            if (!panel.hasAttribute("tabindex")) {
+                panel.setAttribute("tabindex", "-1");
+            }
+
+            panel.setAttribute("aria-hidden", "true");
+        });
+    }
+
+    function collectNavigationItems() {
+        const candidates = Array.from(
+            document.querySelectorAll(
+                "[data-target], [data-section], [data-section-target], a[href^='#'], button[aria-controls]"
+            )
+        );
+
+        const uniqueItems = [];
+
+        candidates.forEach(function (element) {
+            const targetId = getPanelIdFromElement(element);
+
+            if (!targetId) {
+                return;
+            }
+
+            const targetPanel = getPanel(targetId);
+
+            if (!targetPanel) {
+                return;
+            }
+
+            if (uniqueItems.indexOf(element) === -1) {
+                uniqueItems.push(element);
+            }
+        });
+
+        state.navigationItems = uniqueItems;
+
+        state.navigationItems.forEach(function (item) {
+            const targetId = getPanelIdFromElement(item);
+
+            item.setAttribute("aria-controls", targetId);
+
+            if (
+                item.tagName === "BUTTON" ||
+                item.getAttribute("role") === "tab"
+            ) {
+                item.setAttribute("role", "tab");
+                item.setAttribute("aria-selected", "false");
+                item.setAttribute("tabindex", "-1");
+            }
+        });
+    }
+
+    function updateNavigationState(panelId) {
+        state.navigationItems.forEach(function (item) {
+            const targetId = getPanelIdFromElement(item);
+            const isActive = targetId === panelId;
+
+            item.classList.toggle("active", isActive);
+            item.classList.toggle("is-active", isActive);
+
+            if (
+                item.tagName === "BUTTON" ||
+                item.getAttribute("role") === "tab"
+            ) {
+                item.setAttribute(
+                    "aria-selected",
+                    isActive ? "true" : "false"
+                );
+
+                item.setAttribute(
+                    "tabindex",
+                    isActive ? "0" : "-1"
+                );
+            }
+        });
+    }
+
+    function updatePanelState(panelId) {
+        state.panels.forEach(function (panel) {
+            const isActive = panel.id === panelId;
+
+            panel.classList.toggle("active", isActive);
+            panel.classList.toggle("is-active", isActive);
+
+            panel.setAttribute(
+                "aria-hidden",
+                isActive ? "false" : "true"
+            );
+
+            if (isActive) {
+                panel.removeAttribute("hidden");
+            } else {
+                panel.setAttribute("hidden", "");
+            }
+        });
+    }
+
+    function showPanel(panelId, options) {
+        const settings = Object.assign(
+            {
+                updateHash: true,
+                scroll: true,
+                focus: false
+            },
+            options || {}
+        );
+
+        const panel = getPanel(panelId);
 
         if (!panel) {
-            console.warn(
-                `KIRA Auction: Panel "${target}" was not found.`
+            return false;
+        }
+
+        const normalizedId = panel.id;
+
+        updatePanelState(normalizedId);
+        updateNavigationState(normalizedId);
+
+        state.currentPanelId = normalizedId;
+
+        if (settings.updateHash) {
+            try {
+                const currentHash = window.location.hash.replace(/^#/, "");
+
+                if (currentHash !== normalizedId) {
+                    window.history.replaceState(
+                        null,
+                        "",
+                        "#" + normalizedId
+                    );
+                }
+            } catch (error) {
+                window.location.hash = normalizedId;
+            }
+        }
+
+        if (settings.scroll) {
+            const prefersReducedMotion = state.reducedMotion;
+
+            try {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: prefersReducedMotion ? "auto" : "smooth"
+                });
+            } catch (error) {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        if (settings.focus) {
+            window.setTimeout(function () {
+                try {
+                    panel.focus({
+                        preventScroll: true
+                    });
+                } catch (error) {
+                    panel.focus();
+                }
+            }, state.reducedMotion ? 0 : 50);
+        }
+
+        window.dispatchEvent(
+            new CustomEvent("kira:panelchange", {
+                detail: {
+                    panelId: normalizedId,
+                    panel: panel
+                }
+            })
+        );
+
+        return true;
+    }
+
+    function findInitialPanel() {
+        const hashId = window.location.hash.replace(/^#/, "").trim();
+
+        if (hashId) {
+            const hashPanel = getPanel(hashId);
+
+            if (hashPanel) {
+                return hashPanel.id;
+            }
+        }
+
+        const activeNavigation = state.navigationItems.find(function (item) {
+            return (
+                item.classList.contains("active") ||
+                item.classList.contains("is-active") ||
+                item.getAttribute("aria-selected") === "true"
             );
+        });
+
+        if (activeNavigation) {
+            const activeTarget = getPanelIdFromElement(activeNavigation);
+
+            if (activeTarget && getPanel(activeTarget)) {
+                return activeTarget;
+            }
+        }
+
+        const activePanel = state.panels.find(function (panel) {
+            return (
+                panel.classList.contains("active") ||
+                panel.classList.contains("is-active") ||
+                panel.getAttribute("aria-hidden") === "false"
+            );
+        });
+
+        if (activePanel) {
+            return activePanel.id;
+        }
+
+        const firstPanel = state.panels[0];
+
+        if (firstPanel) {
+            return firstPanel.id;
+        }
+
+        return null;
+    }
+
+    function handleNavigationClick(event) {
+        const target = event.currentTarget;
+        const panelId = getPanelIdFromElement(target);
+
+        if (!panelId) {
+            return;
+        }
+
+        const panel = getPanel(panelId);
+
+        if (!panel) {
+            return;
+        }
+
+        const href = target.getAttribute("href");
+
+        if (
+            href &&
+            href.indexOf("#") === 0 &&
+            target.tagName.toLowerCase() === "a"
+        ) {
+            event.preventDefault();
+        }
+
+        showPanel(panelId, {
+            updateHash: true,
+            scroll: true,
+            focus: false
+        });
+    }
+
+    function attachNavigationEvents() {
+        state.navigationItems.forEach(function (item) {
+            item.addEventListener(
+                "click",
+                handleNavigationClick
+            );
+        });
+    }
+
+    function getNavigationIndex(item) {
+        return state.navigationItems.indexOf(item);
+    }
+
+    function focusNavigationItem(index) {
+        if (state.navigationItems.length === 0) {
+            return;
+        }
+
+        let normalizedIndex = index;
+
+        if (normalizedIndex < 0) {
+            normalizedIndex = state.navigationItems.length - 1;
+        }
+
+        if (normalizedIndex >= state.navigationItems.length) {
+            normalizedIndex = 0;
+        }
+
+        const item = state.navigationItems[normalizedIndex];
+
+        if (!item) {
+            return;
+        }
+
+        const panelId = getPanelIdFromElement(item);
+
+        if (panelId) {
+            showPanel(panelId, {
+                updateHash: true,
+                scroll: true,
+                focus: false
+            });
+        }
+
+        try {
+            item.focus({
+                preventScroll: true
+            });
+        } catch (error) {
+            item.focus();
+        }
+    }
+
+    function handleNavigationKeyboard(event) {
+        const item = event.currentTarget;
+
+        if (
+            event.key !== "ArrowDown" &&
+            event.key !== "ArrowRight" &&
+            event.key !== "ArrowUp" &&
+            event.key !== "ArrowLeft" &&
+            event.key !== "Home" &&
+            event.key !== "End" &&
+            event.key !== "Enter" &&
+            event.key !== " "
+        ) {
+            return;
+        }
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+            const panelId = getPanelIdFromElement(item);
+
+            if (panelId) {
+                event.preventDefault();
+
+                showPanel(panelId, {
+                    updateHash: true,
+                    scroll: true,
+                    focus: false
+                });
+            }
 
             return;
         }
 
+        event.preventDefault();
 
-        /* Show panel */
+        const currentIndex = getNavigationIndex(item);
 
-        panel.classList.add("active");
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            focusNavigationItem(currentIndex + 1);
+            return;
+        }
 
-        panel.setAttribute(
-            "aria-hidden",
-            "false"
-        );
+        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            focusNavigationItem(currentIndex - 1);
+            return;
+        }
 
+        if (event.key === "Home") {
+            focusNavigationItem(0);
+            return;
+        }
 
-        /* Restart animation */
-
-        panel.style.animation = "none";
-
-        requestAnimationFrame(() => {
-
-            panel.style.animation = "";
-
-        });
-
-
-        /* Scroll content into view on mobile */
-
-        if (window.innerWidth <= 780) {
-
-            setTimeout(() => {
-
-                const contentArea =
-                    document.querySelector(".content-area");
-
-                if (contentArea) {
-
-                    contentArea.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-
-            }, 100);
+        if (event.key === "End") {
+            focusNavigationItem(
+                state.navigationItems.length - 1
+            );
         }
     }
 
-
-    /* -----------------------------------------------------
-       NAVIGATION BUTTON EVENTS
-       ----------------------------------------------------- */
-
-    navButtons.forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            let target =
-                button.getAttribute("data-target");
-
-            /*
-             * If data-target is not present,
-             * try href.
-             */
-
-            if (!target) {
-
-                const href =
-                    button.getAttribute("href");
-
-                if (href && href.startsWith("#")) {
-
-                    target = href.substring(1);
-
-                }
-            }
-
-
-            /*
-             * Try button ID as fallback.
-             */
-
-            if (!target) {
-
-                target =
-                    button.getAttribute("id");
-
-            }
-
-
-            if (target) {
-
-                showPanel(
-                    target,
-                    button
-                );
-
-            }
-
+    function attachNavigationKeyboardEvents() {
+        state.navigationItems.forEach(function (item) {
+            item.addEventListener(
+                "keydown",
+                handleNavigationKeyboard
+            );
         });
+    }
 
-    });
+    function setupRevealElements() {
+        const revealElements = Array.from(
+            document.querySelectorAll(".reveal")
+        );
 
+        if (revealElements.length === 0) {
+            return;
+        }
 
-    /* -----------------------------------------------------
-       DEFAULT PANEL
-       ----------------------------------------------------- */
+        revealElements.forEach(function (element, index) {
+            const delay = index * STAGGER_STEP;
 
-    function initializeDefaultPanel() {
+            if (!element.style.getPropertyValue("--reveal-delay")) {
+                element.style.setProperty(
+                    "--reveal-delay",
+                    delay + "ms"
+                );
+            }
 
-        /*
-         * First priority:
-         * button marked active
-         */
-
-        let defaultButton =
-            document.querySelector(
-                ".nav-btn.active"
+            element.style.setProperty(
+                "--stagger-delay",
+                delay + "ms"
             );
 
-
-        /*
-         * Second priority:
-         * button with aria-selected=true
-         */
-
-        if (!defaultButton) {
-
-            defaultButton =
-                document.querySelector(
-                    '.nav-btn[aria-selected="true"]'
-                );
-
-        }
-
-
-        /*
-         * Third priority:
-         * first navigation button
-         */
-
-        if (!defaultButton && navButtons.length > 0) {
-
-            defaultButton =
-                navButtons[0];
-
-        }
-
-
-        if (defaultButton) {
-
-            let target =
-                defaultButton.getAttribute(
-                    "data-target"
-                );
-
-
-            if (!target) {
-
-                const href =
-                    defaultButton.getAttribute("href");
-
-                if (href && href.startsWith("#")) {
-
-                    target =
-                        href.substring(1);
-
-                }
-
+            if (state.reducedMotion) {
+                element.classList.add("visible");
             }
+        });
 
-
-            if (!target) {
-
-                target =
-                    defaultButton.getAttribute("id");
-
-            }
-
-
-            /*
-             * If target exists, activate it.
-             */
-
-            if (target) {
-
-                showPanel(
-                    target,
-                    defaultButton
-                );
-
-                return;
-
-            }
-
-        }
-
-
-        /*
-         * If no button target exists,
-         * simply activate first panel.
-         */
-
-        if (contentPanels.length > 0) {
-
-            contentPanels.forEach((panel, index) => {
-
-                if (index === 0) {
-
-                    panel.classList.add("active");
-
-                    panel.setAttribute(
-                        "aria-hidden",
-                        "false"
-                    );
-
-                } else {
-
-                    panel.classList.remove("active");
-
-                    panel.setAttribute(
-                        "aria-hidden",
-                        "true"
-                    );
-
-                }
-
+        if (
+            state.reducedMotion ||
+            !("IntersectionObserver" in window)
+        ) {
+            revealElements.forEach(function (element) {
+                element.classList.add("visible");
             });
 
+            return;
         }
 
+        const observer = new IntersectionObserver(
+            function (entries, observerInstance) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    entry.target.classList.add("visible");
+                    observerInstance.unobserve(entry.target);
+                });
+            },
+            {
+                threshold: REVEAL_THRESHOLD,
+                rootMargin: REVEAL_ROOT_MARGIN
+            }
+        );
+
+        revealElements.forEach(function (element) {
+            observer.observe(element);
+        });
     }
 
+    function setupCardStagger() {
+        const groups = [
+            ".notes-grid",
+            ".important-notes-grid",
+            ".rules-grid",
+            ".rule-grid",
+            ".notes-list",
+            ".cards-grid"
+        ];
 
-    initializeDefaultPanel();
+        groups.forEach(function (selector) {
+            const containers = Array.from(
+                document.querySelectorAll(selector)
+            );
 
-
-    /* =====================================================
-       CARD ANIMATION
-       ===================================================== */
-
-    const cards = document.querySelectorAll(
-        ".rule-card, .note-card"
-    );
-
-
-    cards.forEach((card, index) => {
-
-        card.style.animationDelay =
-            `${Math.min(index * 0.04, 0.6)}s`;
-
-    });
-
-
-    /* =====================================================
-       IMAGE LOAD ANIMATION
-       ===================================================== */
-
-    const images =
-        document.querySelectorAll("img");
-
-
-    images.forEach((image) => {
-
-        image.addEventListener(
-            "load",
-            () => {
-
-                image.classList.add(
-                    "image-loaded"
+            containers.forEach(function (container) {
+                const cards = Array.from(
+                    container.children
                 );
 
+                cards.forEach(function (card, index) {
+                    const delay = index * STAGGER_STEP;
+
+                    card.style.setProperty(
+                        "--card-delay",
+                        delay + "ms"
+                    );
+
+                    card.style.setProperty(
+                        "--stagger-delay",
+                        delay + "ms"
+                    );
+
+                    if (
+                        card.classList.contains("reveal") === false &&
+                        !state.reducedMotion
+                    ) {
+                        card.style.animationDelay =
+                            delay + "ms";
+                    }
+                });
+            });
+        });
+    }
+
+    function handleImageLoad(image) {
+        image.classList.add("image-loaded");
+        image.classList.remove("image-loading");
+
+        const parent = image.closest(
+            ".hero-gavel, .gavel-icon, .image-wrapper, .card-image"
+        );
+
+        if (parent) {
+            parent.classList.add("has-loaded-image");
+        }
+    }
+
+    function handleImageError(image) {
+        image.classList.add("image-error");
+        image.classList.remove("image-loading");
+
+        const parent = image.closest(
+            ".hero-gavel, .gavel-icon, .image-wrapper, .card-image"
+        );
+
+        if (parent) {
+            parent.classList.add("has-image-error");
+        }
+    }
+
+    function setupImageDetection() {
+        const images = Array.from(
+            document.querySelectorAll("img")
+        );
+
+        images.forEach(function (image) {
+            image.classList.add("image-loading");
+
+            if (image.complete) {
+                if (image.naturalWidth > 0) {
+                    handleImageLoad(image);
+                } else {
+                    handleImageError(image);
+                }
+
+                return;
+            }
+
+            image.addEventListener(
+                "load",
+                function () {
+                    handleImageLoad(image);
+                },
+                {
+                    once: true
+                }
+            );
+
+            image.addEventListener(
+                "error",
+                function () {
+                    handleImageError(image);
+                },
+                {
+                    once: true
+                }
+            );
+        });
+    }
+
+    function getParallaxTargets() {
+        const targets = [];
+
+        const heroElements = Array.from(
+            document.querySelectorAll(".hero")
+        );
+
+        const gavelElements = Array.from(
+            document.querySelectorAll(".hero-gavel")
+        );
+
+        heroElements.forEach(function (element) {
+            if (targets.indexOf(element) === -1) {
+                targets.push(element);
+            }
+        });
+
+        gavelElements.forEach(function (element) {
+            if (targets.indexOf(element) === -1) {
+                targets.push(element);
+            }
+        });
+
+        return targets;
+    }
+
+    function shouldEnableParallax() {
+        if (state.reducedMotion) {
+            return false;
+        }
+
+        return window.innerWidth > MOBILE_PARALLAX_BREAKPOINT;
+    }
+
+    function updateParallaxFrame() {
+        state.parallaxFrame = null;
+
+        if (!state.parallaxEnabled) {
+            return;
+        }
+
+        const targets = getParallaxTargets();
+
+        if (targets.length === 0) {
+            return;
+        }
+
+        const normalizedX = state.pointerX / window.innerWidth;
+        const normalizedY = state.pointerY / window.innerHeight;
+
+        const offsetX = (normalizedX - 0.5) * 2;
+        const offsetY = (normalizedY - 0.5) * 2;
+
+        targets.forEach(function (element) {
+            if (element.classList.contains("hero")) {
+                const x = offsetX * 5;
+                const y = offsetY * 4;
+
+                element.style.setProperty(
+                    "--parallax-x",
+                    x.toFixed(3) + "px"
+                );
+
+                element.style.setProperty(
+                    "--parallax-y",
+                    y.toFixed(3) + "px"
+                );
+            }
+
+            if (element.classList.contains("hero-gavel")) {
+                const x = offsetX * 12;
+                const y = offsetY * 9;
+                const rotateX = offsetY * -3;
+                const rotateY = offsetX * 4;
+
+                element.style.setProperty(
+                    "--parallax-gavel-x",
+                    x.toFixed(3) + "px"
+                );
+
+                element.style.setProperty(
+                    "--parallax-gavel-y",
+                    y.toFixed(3) + "px"
+                );
+
+                element.style.setProperty(
+                    "--parallax-rotate-x",
+                    rotateX.toFixed(3) + "deg"
+                );
+
+                element.style.setProperty(
+                    "--parallax-rotate-y",
+                    rotateY.toFixed(3) + "deg"
+                );
+            }
+        });
+    }
+
+    function handlePointerMove(event) {
+        if (!state.parallaxEnabled) {
+            return;
+        }
+
+        state.pointerX = event.clientX;
+        state.pointerY = event.clientY;
+
+        if (state.parallaxFrame !== null) {
+            return;
+        }
+
+        state.parallaxFrame = window.requestAnimationFrame(
+            updateParallaxFrame
+        );
+    }
+
+    function resetParallax() {
+        const targets = getParallaxTargets();
+
+        targets.forEach(function (element) {
+            element.style.removeProperty("--parallax-x");
+            element.style.removeProperty("--parallax-y");
+            element.style.removeProperty(
+                "--parallax-gavel-x"
+            );
+            element.style.removeProperty(
+                "--parallax-gavel-y"
+            );
+            element.style.removeProperty(
+                "--parallax-rotate-x"
+            );
+            element.style.removeProperty(
+                "--parallax-rotate-y"
+            );
+        });
+    }
+
+    function updateParallaxState() {
+        const shouldEnable = shouldEnableParallax();
+
+        if (shouldEnable === state.parallaxEnabled) {
+            return;
+        }
+
+        state.parallaxEnabled = shouldEnable;
+
+        if (!state.parallaxEnabled) {
+            resetParallax();
+        }
+    }
+
+    function setupParallax() {
+        state.parallaxEnabled = shouldEnableParallax();
+
+        document.addEventListener(
+            "pointermove",
+            handlePointerMove,
+            {
+                passive: true
             }
         );
 
-    });
-
-
-    /* =====================================================
-       ACTIVE NAVIGATION ON KEYBOARD
-       ===================================================== */
-
-    navButtons.forEach((button, index) => {
-
-        button.addEventListener(
-            "keydown",
-            (event) => {
-
-                let newIndex = index;
-
-
-                /* Arrow Down / Right */
-
-                if (
-                    event.key === "ArrowDown" ||
-                    event.key === "ArrowRight"
-                ) {
-
-                    newIndex =
-                        (index + 1) %
-                        navButtons.length;
-
-                }
-
-
-                /* Arrow Up / Left */
-
-                if (
-                    event.key === "ArrowUp" ||
-                    event.key === "ArrowLeft"
-                ) {
-
-                    newIndex =
-                        (index - 1 +
-                            navButtons.length) %
-                        navButtons.length;
-
-                }
-
-
-                if (newIndex !== index) {
-
-                    event.preventDefault();
-
-                    navButtons[newIndex].focus();
-
-                }
-
+        window.addEventListener(
+            "resize",
+            function () {
+                updateParallaxState();
+            },
+            {
+                passive: true
             }
         );
 
-    });
+        window.addEventListener(
+            "blur",
+            function () {
+                resetParallax();
+            }
+        );
+    }
 
+    function setupSmoothInternalLinks() {
+        const links = Array.from(
+            document.querySelectorAll("a[href^='#']")
+        );
 
-    /* =====================================================
-       PREVENT HASH JUMP
-       ===================================================== */
+        links.forEach(function (link) {
+            const href = link.getAttribute("href");
 
-    document.querySelectorAll(
-        '.nav-btn[href^="#"]'
-    ).forEach((button) => {
+            if (!href || href === "#") {
+                return;
+            }
 
-        button.addEventListener(
-            "click",
-            (event) => {
+            const targetId = href.substring(1).trim();
 
+            if (!targetId) {
+                return;
+            }
+
+            const target = getPanel(targetId);
+
+            if (!target) {
+                return;
+            }
+
+            if (state.navigationItems.indexOf(link) !== -1) {
+                return;
+            }
+
+            link.addEventListener("click", function (event) {
                 event.preventDefault();
 
-            }
+                showPanel(targetId, {
+                    updateHash: true,
+                    scroll: true,
+                    focus: false
+                });
+            });
+        });
+    }
+
+    function setupLogoScroll() {
+        const logoCandidates = Array.from(
+            document.querySelectorAll(
+                ".logo, .brand, .navbar-brand, .site-logo, [data-logo]"
+            )
         );
 
-    });
+        logoCandidates.forEach(function (logo) {
+            logo.addEventListener("click", function (event) {
+                const href = logo.getAttribute("href");
 
-
-    /* =====================================================
-       HEADER / HERO PARALLAX
-       ===================================================== */
-
-    const hero =
-        document.querySelector(".hero");
-
-    const heroGavel =
-        document.querySelector(".hero-gavel");
-
-
-    if (hero && heroGavel) {
-
-        hero.addEventListener(
-            "mousemove",
-            (event) => {
-
-                /*
-                 * Disable effect on small screens
-                 */
-
-                if (window.innerWidth <= 780) {
+                if (href && href !== "#") {
                     return;
                 }
 
+                event.preventDefault();
 
-                const rect =
-                    hero.getBoundingClientRect();
-
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
-
-
-                const rotateY =
-                    ((x - centerX) /
-                        centerX) * 4;
-
-
-                const rotateX =
-                    ((centerY - y) /
-                        centerY) * 3;
-
-
-                heroGavel.style.transform =
-                    `translateY(-5px)
-                     rotateX(${rotateX}deg)
-                     rotateY(${rotateY}deg)`;
-
-            }
-        );
-
-
-        hero.addEventListener(
-            "mouseleave",
-            () => {
-
-                heroGavel.style.transform =
-                    "";
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       BACK TO TOP WHEN LOGO IS CLICKED
-       ===================================================== */
-
-    const logo =
-        document.querySelector(
-            ".brand img, .logo img"
-        );
-
-
-    if (logo) {
-
-        logo.style.cursor = "pointer";
-
-        logo.addEventListener(
-            "click",
-            () => {
+                try {
+                    window.history.replaceState(
+                        null,
+                        "",
+                        window.location.pathname +
+                        window.location.search
+                    );
+                } catch (error) {
+                    /* History API may be unavailable in restricted contexts. */
+                }
 
                 window.scrollTo({
                     top: 0,
-                    behavior: "smooth"
+                    left: 0,
+                    behavior: state.reducedMotion
+                        ? "auto"
+                        : "smooth"
                 });
-
-            }
-        );
-
+            });
+        });
     }
 
+    function setupCurrentYear() {
+        const currentYear = new Date().getFullYear();
 
-    /* =====================================================
-       CURRENT YEAR
-       ===================================================== */
-
-    const yearElements =
-        document.querySelectorAll(
-            "[data-current-year]"
+        const yearElements = Array.from(
+            document.querySelectorAll("[data-current-year]")
         );
 
+        yearElements.forEach(function (element) {
+            element.textContent = String(currentYear);
+        });
+    }
 
-    yearElements.forEach((element) => {
+    function setupEscapeNavigation() {
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") {
+                return;
+            }
 
-        element.textContent =
-            new Date().getFullYear();
+            const activeElement = document.activeElement;
 
-    });
+            if (
+                activeElement &&
+                activeElement.matches(
+                    "input, textarea, select"
+                )
+            ) {
+                return;
+            }
 
+            const openModal = document.querySelector(
+                ".modal.is-open, .modal.active, [role='dialog'].is-open, [role='dialog'].active"
+            );
 
-    /* =====================================================
-       CONSOLE MESSAGE
-       ===================================================== */
+            if (openModal) {
+                closeModal(openModal);
+            }
+        });
+    }
 
-    console.log(
-        "%c KIRA AUCTION ",
-        "background:#d9a441;color:#111;padding:6px 12px;border-radius:5px;font-weight:bold;"
-    );
+    function openModal(modal) {
+        if (!modal) {
+            return;
+        }
 
-    console.log(
-        "KIRA Auction website initialized successfully."
-    );
+        modal.classList.add("is-open");
+        modal.classList.add("active");
 
+        modal.removeAttribute("hidden");
+        modal.setAttribute("aria-hidden", "false");
+
+        document.body.classList.add("modal-open");
+
+        const closeButton = modal.querySelector(
+            "[data-modal-close], .modal-close, .close-modal, [aria-label='Close']"
+        );
+
+        if (closeButton) {
+            window.setTimeout(function () {
+                try {
+                    closeButton.focus({
+                        preventScroll: true
+                    });
+                } catch (error) {
+                    closeButton.focus();
+                }
+            }, 0);
+        }
+    }
+
+    function closeModal(modal) {
+        if (!modal) {
+            return;
+        }
+
+        modal.classList.remove("is-open");
+        modal.classList.remove("active");
+
+        modal.setAttribute("aria-hidden", "true");
+
+        if (modal.hasAttribute("data-modal-hidden")) {
+            modal.setAttribute("hidden", "");
+        }
+
+        const remainingOpenModals = document.querySelectorAll(
+            ".modal.is-open, .modal.active, [role='dialog'].is-open, [role='dialog'].active"
+        );
+
+        if (remainingOpenModals.length === 0) {
+            document.body.classList.remove("modal-open");
+        }
+    }
+
+    function setupModals() {
+        const modalTriggers = Array.from(
+            document.querySelectorAll(
+                "[data-modal-target], [data-open-modal]"
+            )
+        );
+
+        modalTriggers.forEach(function (trigger) {
+            trigger.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const targetId =
+                    trigger.getAttribute("data-modal-target") ||
+                    trigger.getAttribute("data-open-modal");
+
+                if (!targetId) {
+                    return;
+                }
+
+                const modal = getPanel(targetId);
+
+                if (!modal) {
+                    return;
+                }
+
+                openModal(modal);
+            });
+        });
+
+        const closeButtons = Array.from(
+            document.querySelectorAll(
+                "[data-modal-close], .modal-close, .close-modal"
+            )
+        );
+
+        closeButtons.forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const modal =
+                    button.closest(".modal") ||
+                    button.closest("[role='dialog']");
+
+                closeModal(modal);
+            });
+        });
+
+        const modalOverlays = Array.from(
+            document.querySelectorAll(
+                ".modal-overlay, .modal-backdrop"
+            )
+        );
+
+        modalOverlays.forEach(function (overlay) {
+            overlay.addEventListener("click", function (event) {
+                if (event.target !== overlay) {
+                    return;
+                }
+
+                const modal =
+                    overlay.closest(".modal") ||
+                    overlay.closest("[role='dialog']");
+
+                closeModal(modal);
+            });
+        });
+    }
+
+    function setupExternalNavigationFallback() {
+        const allLinks = Array.from(
+            document.querySelectorAll("a[href]")
+        );
+
+        allLinks.forEach(function (link) {
+            const href = link.getAttribute("href");
+
+            if (!href) {
+                return;
+            }
+
+            if (href.indexOf("#") === 0) {
+                return;
+            }
+
+            if (href.indexOf("javascript:") === 0) {
+                return;
+            }
+
+            link.addEventListener("click", function () {
+                link.classList.add("navigation-loading");
+            });
+        });
+    }
+
+    function setupPanelAccessibility() {
+        state.panels.forEach(function (panel) {
+            if (!panel.hasAttribute("aria-labelledby")) {
+                const matchingNavigation = state.navigationItems.find(
+                    function (item) {
+                        return getPanelIdFromElement(item) === panel.id;
+                    }
+                );
+
+                if (
+                    matchingNavigation &&
+                    matchingNavigation.id
+                ) {
+                    panel.setAttribute(
+                        "aria-labelledby",
+                        matchingNavigation.id
+                    );
+                }
+            }
+        });
+    }
+
+    function setupResizeHandling() {
+        window.addEventListener(
+            "resize",
+            function () {
+                if (state.resizeTimer) {
+                    window.clearTimeout(state.resizeTimer);
+                }
+
+                state.resizeTimer = window.setTimeout(
+                    function () {
+                        updateParallaxState();
+                    },
+                    120
+                );
+            },
+            {
+                passive: true
+            }
+        );
+    }
+
+    function setupVisibilityRefresh() {
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+                if (document.hidden) {
+                    resetParallax();
+                    return;
+                }
+
+                updateParallaxState();
+            }
+        );
+    }
+
+    function initializePanels() {
+        collectPanels();
+        collectNavigationItems();
+
+        if (state.panels.length === 0) {
+            return;
+        }
+
+        setupPanelAccessibility();
+
+        const initialPanelId = findInitialPanel();
+
+        if (initialPanelId) {
+            showPanel(initialPanelId, {
+                updateHash: Boolean(
+                    window.location.hash
+                ),
+                scroll: false,
+                focus: false
+            });
+        }
+    }
+
+    function initialize() {
+        initializePanels();
+
+        attachNavigationEvents();
+        attachNavigationKeyboardEvents();
+
+        setupSmoothInternalLinks();
+        setupLogoScroll();
+        setupCurrentYear();
+
+        setupRevealElements();
+        setupCardStagger();
+
+        setupImageDetection();
+
+        setupParallax();
+        setupResizeHandling();
+        setupVisibilityRefresh();
+
+        setupEscapeNavigation();
+        setupModals();
+
+        setupExternalNavigationFallback();
+
+        window.dispatchEvent(
+            new CustomEvent("kira:ready", {
+                detail: {
+                    panels: state.panels,
+                    navigationItems: state.navigationItems,
+                    currentPanelId: state.currentPanelId
+                }
+            })
+        );
+    }
+
+    window.KIRAAuction = {
+        showPanel: showPanel,
+        getPanel: getPanel,
+        openModal: openModal,
+        closeModal: closeModal,
+        getState: function () {
+            return {
+                currentPanelId: state.currentPanelId,
+                panels: state.panels.slice(),
+                navigationItems: state.navigationItems.slice(),
+                parallaxEnabled: state.parallaxEnabled,
+                reducedMotion: state.reducedMotion
+            };
+        }
+    };
+
+    initialize();
 });
