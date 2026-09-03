@@ -1,69 +1,334 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>KIRA Auction | Terms & Conditions</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#07111f">
+    <meta name="color-scheme" content="dark">
+    <meta name="application-name" content="KIRA Auction">
+    <meta name="robots" content="index,follow">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>
+        KIRA Auction | Terms & Conditions & Important Notes
+    </title>
 
     <meta
         name="description"
-        content="KIRA Auction Terms & Conditions and Important Notes."
+        content="Official KIRA Diam Tech auction terms, payment conditions, delivery rules, penalties and important participation notes."
     >
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="icon"
+        href="assets/kira.png"
+        type="image/png"
+    >
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap"
         rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
     >
 </head>
 
 <body>
 
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to main content
+    </a>
+
+
     <!-- =====================================================
          PAGE LOADER
     ====================================================== -->
 
-    <div class="page-loader" id="pageLoader">
+    <div
+        class="page-loader"
+        id="pageLoader"
+        aria-hidden="true"
+    >
+
         <div class="loader-logo">
-            <img src="assets/kira.png" alt="KIRA Diam Tech">
+
+            <img
+                src="assets/kira.png"
+                alt="KIRA Diam Tech"
+            >
+
         </div>
 
         <div class="loader-line"></div>
 
-        <p>Preparing Auction Terms</p>
+        <p>
+            Preparing Auction Terms
+        </p>
+
     </div>
 
 
     <!-- =====================================================
-         MAIN APPLICATION
+         PREMIUM TOP NAVIGATION
+    ====================================================== -->
+
+    <header
+        class="site-header"
+        id="siteHeader"
+    >
+
+        <div class="site-header-inner">
+
+            <!-- BRAND -->
+
+            <a
+                href="#terms"
+                class="site-brand"
+                aria-label="KIRA Auction home"
+            >
+
+                <img
+                    src="assets/kira.png"
+                    alt="KIRA Diam Tech"
+                    class="site-brand-logo"
+                >
+
+                <span class="site-brand-copy">
+
+                    <span class="site-brand-name">
+                        KIRA
+                    </span>
+
+                    <span class="site-brand-subtitle">
+                        DIAM TECH · AUCTION
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <!-- PRIMARY NAVIGATION -->
+
+            <nav
+                class="primary-navigation"
+                id="primaryNavigation"
+                aria-label="Primary navigation"
+            >
+
+                <button
+                    class="primary-nav-link active"
+                    type="button"
+                    data-target="terms"
+                    aria-controls="terms"
+                    aria-selected="true"
+                >
+                    <span>
+                        Auctions
+                    </span>
+                </button>
+
+
+                <button
+                    class="primary-nav-link"
+                    type="button"
+                    data-target="notes"
+                    aria-controls="notes"
+                    aria-selected="false"
+                >
+                    <span>
+                        Bid History
+                    </span>
+                </button>
+
+
+                <button
+                    class="primary-nav-link"
+                    type="button"
+                    data-action="appointment"
+                >
+                    <span>
+                        Book Appointment
+                    </span>
+                </button>
+
+
+                <button
+                    class="primary-nav-link"
+                    type="button"
+                    data-action="win"
+                >
+                    <span>
+                        Win
+                    </span>
+                </button>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="site-header-actions">
+
+                <div
+                    class="auction-status"
+                    aria-label="Auction availability status"
+                >
+
+                    <span
+                        class="status-indicator"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span>
+                        Auction Not Available
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="profile-button"
+                    type="button"
+                    aria-label="Open profile"
+                    data-action="profile"
+                >
+
+                    <span
+                        class="profile-icon"
+                        aria-hidden="true"
+                    >
+
+                        <span class="profile-head"></span>
+
+                        <span class="profile-body"></span>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="mobile-menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="primaryNavigationPanel"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <div
+            class="mobile-navigation-panel"
+            id="primaryNavigationPanel"
+            hidden
+        >
+
+            <button
+                type="button"
+                data-target="terms"
+                aria-controls="terms"
+            >
+                Auctions
+            </button>
+
+
+            <button
+                type="button"
+                data-target="notes"
+                aria-controls="notes"
+            >
+                Important Notes
+            </button>
+
+
+            <button
+                type="button"
+                data-action="appointment"
+            >
+                Book Appointment
+            </button>
+
+
+            <button
+                type="button"
+                data-action="win"
+            >
+                Win
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         APPLICATION SHELL
     ====================================================== -->
 
     <div class="app-shell">
+
 
         <!-- =================================================
              LEFT SIDEBAR
         ================================================== -->
 
-        <aside class="sidebar">
+        <aside
+            class="sidebar"
+            aria-label="Auction agreement navigation"
+        >
 
             <div class="sidebar-top">
 
-                <!-- Logo -->
-                <a href="#" class="brand">
+                <a
+                    href="#terms"
+                    class="brand"
+                    aria-label="Return to KIRA Auction terms"
+                >
+
                     <img
                         src="assets/kira.png"
                         alt="KIRA Diam Tech"
                         class="brand-logo"
                     >
+
                 </a>
 
+
                 <div class="brand-divider"></div>
+
 
                 <span class="sidebar-label">
                     AUCTION AGREEMENT
@@ -72,70 +337,138 @@
             </div>
 
 
-            <!-- Navigation -->
-            <nav class="agreement-navigation" aria-label="Agreement navigation">
+            <!-- AGREEMENT NAVIGATION -->
+
+            <nav
+                class="agreement-navigation"
+                aria-label="Agreement navigation"
+            >
 
                 <button
+                    id="termsNav"
                     class="nav-button active"
                     type="button"
                     data-section="terms"
+                    data-target="terms"
+                    aria-controls="terms"
                     aria-selected="true"
                 >
-                    <span class="nav-number">01</span>
 
-                    <span class="nav-icon">
+                    <span class="nav-number">
+                        01
+                    </span>
+
+
+                    <span
+                        class="nav-icon"
+                        aria-hidden="true"
+                    >
+
                         <img
                             src="assets/icon-auction.svg"
                             alt=""
                         >
+
                     </span>
+
 
                     <span class="nav-text">
-                        <strong>Terms &</strong>
-                        <span>Conditions</span>
+
+                        <strong>
+                            Terms &
+                        </strong>
+
+                        <span>
+                            Conditions
+                        </span>
+
                     </span>
 
-                    <span class="nav-arrow">→</span>
+
+                    <span
+                        class="nav-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
+
                 </button>
 
 
                 <button
+                    id="notesNav"
                     class="nav-button"
                     type="button"
                     data-section="notes"
+                    data-target="notes"
+                    aria-controls="notes"
                     aria-selected="false"
                 >
-                    <span class="nav-number">02</span>
 
-                    <span class="nav-icon">
+                    <span class="nav-number">
+                        02
+                    </span>
+
+
+                    <span
+                        class="nav-icon"
+                        aria-hidden="true"
+                    >
+
                         <img
                             src="assets/icon-penalty.svg"
                             alt=""
                         >
+
                     </span>
+
 
                     <span class="nav-text">
-                        <strong>Important</strong>
-                        <span>Notes</span>
+
+                        <strong>
+                            Important
+                        </strong>
+
+                        <span>
+                            Notes
+                        </span>
+
                     </span>
 
-                    <span class="nav-arrow">→</span>
+
+                    <span
+                        class="nav-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
+
                 </button>
 
             </nav>
 
 
-            <!-- Sidebar Bottom -->
+            <!-- SIDEBAR STATUS -->
+
             <div class="sidebar-bottom">
 
                 <div class="sidebar-status">
-                    <span class="status-dot"></span>
-                    <span>Official Auction Rules</span>
+
+                    <span
+                        class="status-dot"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span>
+                        Official Auction Rules
+                    </span>
+
                 </div>
 
+
                 <p>
-                    Please read all rules carefully before participating
-                    in the auction.
+                    Please read all rules carefully before
+                    participating in the auction.
                 </p>
 
             </div>
@@ -143,17 +476,19 @@
         </aside>
 
 
-
         <!-- =================================================
              MAIN CONTENT
         ================================================== -->
 
-        <main class="main-content">
+        <main
+            class="main-content"
+            id="main-content"
+        >
 
 
-            <!-- =============================================
-                 TOP HEADER
-            ============================================== -->
+            <!-- =================================================
+                 INTERNAL HEADER
+            ================================================== -->
 
             <header class="top-header">
 
@@ -163,7 +498,10 @@
                         KIRA AUCTION
                     </span>
 
-                    <span class="header-divider"></span>
+                    <span
+                        class="header-divider"
+                        aria-hidden="true"
+                    ></span>
 
                     <span class="header-title">
                         Legal Agreement
@@ -178,7 +516,10 @@
                         Official Terms
                     </span>
 
-                    <span class="secure-icon">
+                    <span
+                        class="secure-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -187,19 +528,25 @@
             </header>
 
 
-
-            <!-- =============================================
-                 TERMS & CONDITIONS SECTION
-            ============================================== -->
+            <!-- =================================================
+                 TERMS & CONDITIONS PANEL
+            ================================================== -->
 
             <section
                 id="terms"
+                data-panel="terms"
                 class="content-section active-section"
                 aria-labelledby="terms-title"
+                aria-hidden="false"
             >
 
-                <!-- HERO -->
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
                 <div class="hero-section">
+
 
                     <div class="hero-copy reveal">
 
@@ -207,44 +554,77 @@
                             01 / TERMS & CONDITIONS
                         </span>
 
+
                         <h1 id="terms-title">
+
                             KIRA Auction
-                            <span>નિયમ અને શરતો</span>
+
+                            <span>
+                                નિયમ અને શરતો
+                            </span>
+
                         </h1>
 
+
                         <p class="hero-description">
-                            Please carefully read and understand all
-                            auction rules, payment conditions, delivery
-                            requirements, responsibilities and penalties
-                            before participating.
+                            Please carefully read and understand
+                            all auction rules, payment conditions,
+                            delivery requirements, responsibilities
+                            and penalties before participating.
                         </p>
 
 
                         <div class="hero-meta">
 
+
                             <div class="meta-item">
-                                <span class="meta-number">14</span>
+
+                                <span class="meta-number">
+                                    14
+                                </span>
+
                                 <span class="meta-label">
                                     Core Rules
                                 </span>
+
                             </div>
 
-                            <div class="meta-line"></div>
+
+                            <div
+                                class="meta-line"
+                                aria-hidden="true"
+                            ></div>
+
 
                             <div class="meta-item">
-                                <span class="meta-number">09</span>
+
+                                <span class="meta-number">
+                                    09
+                                </span>
+
                                 <span class="meta-label">
                                     Payment Days
                                 </span>
+
                             </div>
 
-                            <div class="meta-line"></div>
+
+                            <div
+                                class="meta-line"
+                                aria-hidden="true"
+                            ></div>
+
 
                             <div class="meta-item">
-                                <span class="meta-number">2%</span>
+
+                                <span class="meta-number">
+                                    2%
+                                </span>
+
                                 <span class="meta-label">
                                     Monthly Interest
                                 </span>
+
                             </div>
 
                         </div>
@@ -252,13 +632,27 @@
                     </div>
 
 
-                    <!-- HERO IMAGE -->
+                    <!-- HERO VISUAL -->
+
                     <div class="hero-visual reveal">
 
-                        <div class="hero-glow"></div>
+                        <div
+                            class="hero-glow"
+                            aria-hidden="true"
+                        ></div>
 
-                        <div class="hero-ring ring-one"></div>
-                        <div class="hero-ring ring-two"></div>
+
+                        <div
+                            class="hero-ring ring-one"
+                            aria-hidden="true"
+                        ></div>
+
+
+                        <div
+                            class="hero-ring ring-two"
+                            aria-hidden="true"
+                        ></div>
+
 
                         <img
                             src="assets/hero-gavel-3d.png"
@@ -266,13 +660,17 @@
                             class="hero-gavel"
                         >
 
+
                         <div class="hero-badge">
+
                             <span class="badge-small">
                                 KIRA
                             </span>
+
                             <strong>
                                 AUCTION
                             </strong>
+
                         </div>
 
                     </div>
@@ -280,24 +678,28 @@
                 </div>
 
 
-
-                <!-- =========================================
-                     INTRODUCTION
-                ========================================== -->
+                <!-- =================================================
+                     INTRODUCTION PANEL
+                ================================================== -->
 
                 <div class="intro-panel reveal">
 
                     <div class="intro-icon">
+
                         <img
                             src="assets/icon-auction.svg"
                             alt=""
                         >
+
                     </div>
 
+
                     <div>
+
                         <span class="panel-label">
                             IMPORTANT
                         </span>
+
 
                         <p>
                             Participation in the KIRA Auction confirms
@@ -305,32 +707,45 @@
                             understood and agreed to all the rules and
                             conditions mentioned below.
                         </p>
+
                     </div>
 
                 </div>
 
 
+                <!-- =================================================
+                     RULES CONTAINER
+                ================================================== -->
 
-                <!-- =========================================
-                     RULES
-                ========================================== -->
+                <div
+                    class="rules-container"
+                    aria-label="KIRA Auction Terms and Conditions"
+                >
 
-                <div class="rules-container">
 
+                    <!-- =================================================
+                         RULE 01
+                    ================================================== -->
 
-                    <!-- RULE 01 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-01"
+                    >
 
                         <div class="rule-number">
                             01
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-auction.svg"
                                 alt="Auction"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -338,15 +753,18 @@
                                 Auction Price & Online Bidding
                             </h2>
 
+
                             <div class="gujarati-text">
                                 ઓકશનમાં ભરેલા ભાવ નેટ રોકડા માં રહેશે.
                                 ઓકશન ઓનલાઈન અને US$ ડોલર ભાવમાં ભરવાનુ રહેશે.
                             </div>
 
+
                             <div class="english-text">
                                 The Auctioned Price Will Be In Net Cash.
                                 The Auction will be online and in USD.
                             </div>
+
 
                             <a
                                 href="http://35.198.239.4"
@@ -362,20 +780,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 02
+                    ================================================== -->
 
-                    <!-- RULE 02 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-02"
+                    >
 
                         <div class="rule-number">
                             02
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-deadline.svg"
                                 alt="Payment Deadline"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -383,33 +810,47 @@
                                 Payment Deadline & Interest
                             </h2>
 
+
                             <div class="highlight-grid">
 
                                 <div class="highlight-box">
-                                    <strong>9 DAYS</strong>
+
+                                    <strong>
+                                        9 DAYS
+                                    </strong>
+
                                     <span>
                                         Full payment deadline
                                     </span>
+
                                 </div>
 
+
                                 <div class="highlight-box">
-                                    <strong>2.00%</strong>
+
+                                    <strong>
+                                        2.00%
+                                    </strong>
+
                                     <span>
                                         Interest per month
                                     </span>
+
                                 </div>
 
                             </div>
+
 
                             <div class="gujarati-text">
                                 ઓક્શન બંધ થયા પછી જીતેલા માલની સંપૂર્ણ રકમ
                                 ૯ દિવસમાં ભરવાની રહેશે. અને ૯ દિવસ
                                 (રવિવાર તેમજ અન્ય રજા સાથે) કરતા વધારે દિવસ
                                 થશે તો કંપનીના નિયમ મુજબ ૨.00% પ્રતિ મહિના
-                                પ્રમાણે વ્યાજ ગણવામાં આવશે.
-                                ૯ દિવસ કરતા વધારે દિવસ થશે તો તેનું વ્યાજ
-                                ઓક્શનના દિવસથી જ ગણવામાં આવશે.
+                                પ્રમાણે વ્યાજ ગણવામાં આવશે. ૯ દિવસ કરતા વધારે
+                                દિવસ થશે તો તેનું વ્યાજ ઓક્શનના દિવસથી જ
+                                ગણવામાં આવશે.
                             </div>
+
 
                             <div class="english-text">
                                 The Full Amount Of The Won Goods Has To Be
@@ -426,20 +867,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 03
+                    ================================================== -->
 
-                    <!-- RULE 03 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-03"
+                    >
 
                         <div class="rule-number">
                             03
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-delivery.svg"
                                 alt="Delivery"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -447,11 +897,13 @@
                                 Delivery After Payment Confirmation
                             </h2>
 
+
                             <div class="gujarati-text">
                                 કીરા માં કલાઈન્ટનું પેઈમેન્ટ કન્ફોર્મ
                                 થયા પછીના બીજા દિવસે બપોરે ૩ વાગ્યા પછી
                                 ડીલીવરી મળી જશે.
                             </div>
+
 
                             <div class="english-text">
                                 After confirmation of the payment from KIRA,
@@ -459,9 +911,15 @@
                                 next working day after 3 PM.
                             </div>
 
+
                             <div class="info-chip">
-                                <span>DELIVERY</span>
+
+                                <span>
+                                    DELIVERY
+                                </span>
+
                                 Next Working Day · After 3 PM
+
                             </div>
 
                         </div>
@@ -469,26 +927,36 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 04
+                    ================================================== -->
 
-                    <!-- RULE 04 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-04"
+                    >
 
                         <div class="rule-number">
                             04
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-billing.svg"
                                 alt="Billing"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
                             <h2>
                                 Full Payment & Bill Required
                             </h2>
+
 
                             <div class="gujarati-text">
                                 સંપુર્ણ પેઈમેન્ટ અને બીલ વગર ડિલીવરી
@@ -497,12 +965,14 @@
                                 વાત કે રજૂઆત પણ કરવી નહિ.
                             </div>
 
+
                             <div class="english-text">
                                 Delivery will not be possible without
                                 full payment and bill. No client or broker
                                 should talk to or suggest payment in cash
                                 to the management.
                             </div>
+
 
                             <div class="warning-chip">
                                 Full Payment + Bill Required
@@ -513,20 +983,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 05
+                    ================================================== -->
 
-                    <!-- RULE 05 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-05"
+                    >
 
                         <div class="rule-number">
                             05
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-registration.svg"
                                 alt="Registration"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -534,11 +1013,13 @@
                                 Client & Broker Eligibility
                             </h2>
 
+
                             <div class="gujarati-text">
                                 કલાઈન્ટ તેમજ બ્રોકર પાસે જો બીલ તેમજ
                                 ચેકની વ્યવસ્થા ન હોય તો તેમણે ઓક્શનમાં
                                 ભાગ લેવો નહિ.
                             </div>
+
 
                             <div class="english-text">
                                 The Client and the Broker should not
@@ -551,20 +1032,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 06
+                    ================================================== -->
 
-                    <!-- RULE 06 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-06"
+                    >
 
                         <div class="rule-number">
                             06
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-currency.svg"
                                 alt="Currency"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -572,11 +1062,13 @@
                                 USD Billing & Exchange Rate
                             </h2>
 
+
                             <div class="gujarati-text">
                                 માલની સંપુર્ણ રકમ ડોલર બીલમાં ભરવાની રહેશે.
                                 ડોલર રેટ ઓકશનના દિવસનો RBI Ref Rate
                                 +૦.૦૫ પૈસા લેવામાં આવશે.
                             </div>
+
 
                             <div class="english-text">
                                 The full amount of the goods has to be
@@ -585,11 +1077,17 @@
                                 Paise on the day of the auction.
                             </div>
 
+
                             <div class="rate-box">
-                                <span>AUCTION DAY RATE</span>
+
+                                <span>
+                                    AUCTION DAY RATE
+                                </span>
+
                                 <strong>
                                     RBI Ref Rate + 0.05
                                 </strong>
+
                             </div>
 
                         </div>
@@ -597,20 +1095,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 07
+                    ================================================== -->
 
-                    <!-- RULE 07 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-07"
+                    >
 
                         <div class="rule-number">
                             07
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-inspection.svg"
                                 alt="Inspection"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -618,12 +1125,14 @@
                                 Inspection & Client Responsibility
                             </h2>
 
+
                             <div class="gujarati-text">
                                 માલ જોતા સમયે કોઈપણ જાતની ભુલ થશે તો
                                 તેની સંપુર્ણ જવાબદારી જોવા આવેલ કલાઈન્ટની
                                 રહેશે. હર એક જોવા આવેલ કલાઈન્ટએ પોતે માલની
                                 ચકાસણી (સાઈઝ અને કટ) કરી લેવી.
                             </div>
+
 
                             <div class="english-text">
                                 In the event of any mistake while viewing
@@ -633,11 +1142,20 @@
                                 including size and cut, properly.
                             </div>
 
+
                             <div class="inspection-points">
 
-                                <span>✓ Size</span>
-                                <span>✓ Cut</span>
-                                <span>✓ Goods Verification</span>
+                                <span>
+                                    ✓ Size
+                                </span>
+
+                                <span>
+                                    ✓ Cut
+                                </span>
+
+                                <span>
+                                    ✓ Goods Verification
+                                </span>
 
                             </div>
 
@@ -646,20 +1164,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 08
+                    ================================================== -->
 
-                    <!-- RULE 08 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-08"
+                    >
 
                         <div class="rule-number">
                             08
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-auction.svg"
                                 alt="Auction"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -667,10 +1194,12 @@
                                 Previous Round Bid
                             </h2>
 
+
                             <div class="gujarati-text">
                                 તમને અગાઉ ના રાઉન્ડ ના ભાવથી પણ WIN આવી શકે
                                 જો તમે અગાઉના રાઉન્ડમાં બીડ કરેલ હશે તો.
                             </div>
+
 
                             <div class="english-text">
                                 You can also win from the price of the
@@ -683,20 +1212,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 09
+                    ================================================== -->
 
-                    <!-- RULE 09 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-09"
+                    >
 
                         <div class="rule-number">
                             09
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-auction.svg"
                                 alt="Bidding Priority"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -704,15 +1242,18 @@
                                 First Saved Bid Priority
                             </h2>
 
+
                             <div class="gujarati-text">
                                 કોઈપણ રાઉન્ડમાં જે કલાઈન્ટ પહેલા બીડ ભરીને
                                 સેવ કરેલી હશે, તેમનો વિન થવાનો ચાન્સ પહેલા રહેશે.
                             </div>
 
+
                             <div class="english-text">
                                 In any round, the client that bids and saves
                                 first will have the first chance to win.
                             </div>
+
 
                             <div class="priority-badge">
                                 FIRST SAVED BID = FIRST CHANCE
@@ -723,20 +1264,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 10
+                    ================================================== -->
 
-                    <!-- RULE 10 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-10"
+                    >
 
                         <div class="rule-number">
                             10
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-inspection.svg"
                                 alt="Carat Inspection"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -744,10 +1294,12 @@
                                 Approximate Carats
                             </h2>
 
+
                             <div class="gujarati-text">
                                 ઓક્શન માં બતાવેલા બધા કેરેટ્સ અંદાજીત હોય છે.
                                 ડીલીવરી સમયે ફાયનલ કેરેટ્સ આપવામાં આવશે.
                             </div>
+
 
                             <div class="english-text">
                                 All carats shown in the auction are
@@ -755,12 +1307,29 @@
                                 at the time of delivery.
                             </div>
 
+
                             <div class="carat-notice">
-                                <span>AUCTION</span>
-                                Approximate Carats
-                                <b>→</b>
-                                <span>DELIVERY</span>
-                                Final Carats
+
+                                <span>
+                                    AUCTION
+                                </span>
+
+                                <span>
+                                    Approximate Carats
+                                </span>
+
+                                <b aria-hidden="true">
+                                    →
+                                </b>
+
+                                <span>
+                                    DELIVERY
+                                </span>
+
+                                <span>
+                                    Final Carats
+                                </span>
+
                             </div>
 
                         </div>
@@ -768,20 +1337,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 11
+                    ================================================== -->
 
-                    <!-- RULE 11 -->
-                    <article class="rule-card rule-danger reveal">
+                    <article
+                        class="rule-card rule-danger reveal"
+                        id="rule-11"
+                    >
 
                         <div class="rule-number">
                             11
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-penalty.svg"
                                 alt="Penalty"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -789,16 +1367,24 @@
                                 IMPORTANT PENALTY
                             </div>
 
+
                             <h2>
                                 Winning Client Must Take The Goods
                             </h2>
 
+
                             <div class="penalty-highlight">
-                                <strong>50%</strong>
+
+                                <strong>
+                                    50%
+                                </strong>
+
                                 <span>
                                     Penalty of the won goods amount
                                 </span>
+
                             </div>
+
 
                             <div class="gujarati-text">
                                 વિજેતા કલાઈન્ટએ માલ ફરજીયાત લેવાનો રહેશે.
@@ -810,6 +1396,7 @@
                                 ભાગ લઇ શકશે નહિ.
                             </div>
 
+
                             <div class="english-text">
                                 The winning client will have to take the
                                 goods compulsorily. If any winning client
@@ -820,9 +1407,15 @@
                                 participate in future auctions.
                             </div>
 
+
                             <div class="blacklist-warning">
-                                <span>⚠</span>
+
+                                <span aria-hidden="true">
+                                    ⚠
+                                </span>
+
                                 Client + Broker → Blacklisted
+
                             </div>
 
                         </div>
@@ -830,26 +1423,36 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 12
+                    ================================================== -->
 
-                    <!-- RULE 12 -->
-                    <article class="rule-card rule-danger reveal">
+                    <article
+                        class="rule-card rule-danger reveal"
+                        id="rule-12"
+                    >
 
                         <div class="rule-number">
                             12
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-deadline.svg"
                                 alt="Penalty Deadline"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
                             <h2>
                                 Penalty Payment Deadline
                             </h2>
+
 
                             <div class="gujarati-text">
                                 પેનલ્ટી ની રકમ ઓક્શન બંધ થયા પછી ના ૯ દિવસ
@@ -858,6 +1461,7 @@
                                 પ્રમાણે વ્યાજ ગણવામાં આવશે. ૯ દિવસ કરતા વધારે
                                 થશે તેનું વ્યાજ ઓક્શનના દિવસથી જ ગણવામાં આવશે.
                             </div>
+
 
                             <div class="english-text">
                                 The full amount of penalty has to be paid
@@ -868,16 +1472,32 @@
                                 be calculated from the day of the auction itself.
                             </div>
 
+
                             <div class="deadline-box">
 
                                 <div>
-                                    <span>DEADLINE</span>
-                                    <strong>9 Days</strong>
+
+                                    <span>
+                                        DEADLINE
+                                    </span>
+
+                                    <strong>
+                                        9 Days
+                                    </strong>
+
                                 </div>
 
+
                                 <div>
-                                    <span>DELAY CHARGE</span>
-                                    <strong>2.00% / Month</strong>
+
+                                    <span>
+                                        DELAY CHARGE
+                                    </span>
+
+                                    <strong>
+                                        2.00% / Month
+                                    </strong>
+
                                 </div>
 
                             </div>
@@ -887,20 +1507,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 13
+                    ================================================== -->
 
-                    <!-- RULE 13 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-13"
+                    >
 
                         <div class="rule-number">
                             13
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-billing.svg"
                                 alt="Billing Company"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -908,20 +1537,33 @@
                                 Registration & Billing Company
                             </h2>
 
+
                             <div class="gujarati-text">
                                 જે કંપની માંથી રજીસ્ટ્રેશન કરવામાં આવશે
                                 તે જ કંપની માં બિલ બનાવવામાં આવશે.
                             </div>
+
 
                             <div class="english-text">
                                 The bill will be made in the same company
                                 from which the registration will be done.
                             </div>
 
+
                             <div class="company-flow">
-                                <span>REGISTRATION COMPANY</span>
-                                <b>→</b>
-                                <span>BILLING COMPANY</span>
+
+                                <span>
+                                    REGISTRATION COMPANY
+                                </span>
+
+                                <b aria-hidden="true">
+                                    →
+                                </b>
+
+                                <span>
+                                    BILLING COMPANY
+                                </span>
+
                             </div>
 
                         </div>
@@ -929,20 +1571,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         RULE 14
+                    ================================================== -->
 
-                    <!-- RULE 14 -->
-                    <article class="rule-card reveal">
+                    <article
+                        class="rule-card reveal"
+                        id="rule-14"
+                    >
 
                         <div class="rule-number">
                             14
                         </div>
 
+
                         <div class="rule-icon">
+
                             <img
                                 src="assets/icon-brokerage.svg"
                                 alt="Brokerage"
                             >
+
                         </div>
+
 
                         <div class="rule-content">
 
@@ -950,16 +1601,19 @@
                                 Brokerage Responsibility
                             </h2>
 
+
                             <div class="gujarati-text">
                                 ઓક્શન માં વિન થયેલ કોઈ પણ આર્ટીકલની દલાલી,
                                 લેનાર કલાઈન્ટએ આપવાની રહેશે.
                             </div>
+
 
                             <div class="english-text">
                                 The brokerage for any article won in the
                                 auction will have to be paid by the
                                 buyer client.
                             </div>
+
 
                             <div class="buyer-badge">
                                 BUYER CLIENT PAYS BROKERAGE
@@ -972,31 +1626,37 @@
                 </div>
 
 
-
-                <!-- =========================================
-                     IMPORTANT NOTE PREVIEW
-                ========================================== -->
+                <!-- =================================================
+                     IMPORTANT NOTES PREVIEW
+                ================================================== -->
 
                 <div class="notes-preview reveal">
 
                     <div class="notes-preview-icon">
+
                         <img
                             src="assets/icon-penalty.svg"
                             alt=""
                         >
+
                     </div>
 
+
                     <div>
+
                         <span>
                             IMPORTANT NOTES
                         </span>
+
 
                         <p>
                             Additional auction conditions and
                             acknowledgement terms are available in
                             the Important Notes section.
                         </p>
+
                     </div>
+
 
                     <button
                         type="button"
@@ -1009,20 +1669,27 @@
                 </div>
 
 
+                <!-- =================================================
+                     TERMS FOOTER
+                ================================================== -->
 
-                <!-- FOOTER -->
                 <footer class="content-footer">
 
                     <div>
+
                         <img
                             src="assets/kira.png"
                             alt="KIRA Diam Tech"
                         >
+
                     </div>
 
+
                     <p>
-                        KIRA Auction · Official Terms & Conditions
+                        KIRA Auction · Official Terms & Conditions ·
+                        © <span data-current-year></span>
                     </p>
+
 
                     <span>
                         Please read carefully before participating.
@@ -1033,17 +1700,22 @@
             </section>
 
 
-
             <!-- =================================================
-                 IMPORTANT NOTES SECTION
+                 IMPORTANT NOTES PANEL
             ================================================== -->
 
             <section
                 id="notes"
-                class="content-section"
+                data-panel="notes"
+                class="content-section notes-section"
                 aria-labelledby="notes-title"
-                hidden
+                aria-hidden="true"
             >
+
+
+                <!-- =================================================
+                     NOTES HERO
+                ================================================== -->
 
                 <div class="notes-hero reveal">
 
@@ -1053,10 +1725,17 @@
                             02 / IMPORTANT NOTES
                         </span>
 
+
                         <h1 id="notes-title">
+
                             Important
-                            <span>Notes</span>
+
+                            <span>
+                                Notes
+                            </span>
+
                         </h1>
+
 
                         <p>
                             Please carefully review these additional
@@ -1066,9 +1745,14 @@
 
                     </div>
 
+
                     <div class="notes-hero-icon">
 
-                        <div class="notes-orbit"></div>
+                        <div
+                            class="notes-orbit"
+                            aria-hidden="true"
+                        ></div>
+
 
                         <img
                             src="assets/hero-gavel-3d.png"
@@ -1080,25 +1764,39 @@
                 </div>
 
 
+                <!-- =================================================
+                     IMPORTANT NOTES GRID
+                ================================================== -->
 
-                <!-- NOTES GRID -->
+                <div
+                    class="important-notes-grid"
+                    aria-label="Important auction notes"
+                >
 
-                <div class="important-notes-grid">
 
+                    <!-- =================================================
+                         NOTE 01
+                    ================================================== -->
 
-                    <!-- NOTE 01 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-01"
+                    >
 
                         <div class="important-note-number">
                             01
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-currency.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1106,10 +1804,12 @@
                                 Estimated Total Bid Amount
                             </h2>
 
+
                             <div class="gujarati-text">
                                 બતાવેલ ટોટલ બીડ અમાઉન્ટ એ એસ્ટિમેટેડ છે,
                                 તે ફાઇનલ નથી.
                             </div>
+
 
                             <div class="english-text">
                                 The total bid amount shown is estimated,
@@ -1121,20 +1821,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 02
+                    ================================================== -->
 
-                    <!-- NOTE 02 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-02"
+                    >
 
                         <div class="important-note-number">
                             02
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-inspection.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1142,10 +1851,12 @@
                                 Carat Information
                             </h2>
 
+
                             <div class="gujarati-text">
                                 દરેક કાપણના કેરેટ બતાવવામાં આવશે પાછળના
                                 સેન્ટ બતાવવામાં આવશે નહી.
                             </div>
+
 
                             <div class="english-text">
                                 Each cut's carat will be shown;
@@ -1157,20 +1868,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 03
+                    ================================================== -->
 
-                    <!-- NOTE 03 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-03"
+                    >
 
                         <div class="important-note-number">
                             03
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-auction.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1178,15 +1898,18 @@
                                 Reserve Price
                             </h2>
 
+
                             <div class="gujarati-text">
                                 તમારી બીડ પ્રાઇઝ અને અમારી રિઝર્વ પ્રાઇઝ
                                 મેચ ના થાય તો તે માલ વિડ્રોલ કરવામાં આવશે.
                             </div>
 
+
                             <div class="english-text">
                                 If your bid price and our reserve price
                                 do not match, the goods will be withdrawn.
                             </div>
+
 
                             <div class="withdrawal-badge">
                                 RESERVE PRICE MISMATCH → WITHDRAWAL
@@ -1197,20 +1920,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 04
+                    ================================================== -->
 
-                    <!-- NOTE 04 -->
-                    <article class="important-note note-warning reveal">
+                    <article
+                        class="important-note note-warning reveal"
+                        id="note-04"
+                    >
 
                         <div class="important-note-number">
                             04
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-penalty.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1218,12 +1950,14 @@
                                 Rule Violation / False Complaint
                             </h2>
 
+
                             <div class="gujarati-text">
                                 જે કોઈ પણ કલાઈન્ટ કે બ્રોકર નિયમોનો ભંગ
                                 કરશે અથવા ખોટી ફરિયાદ કરશે તો તે કલાઈન્ટ
                                 કે બ્રોકર ભવિષ્યના કોઈ પણ ઓક્શનમાં ભાગ
                                 લઇ શકશે નહિ.
                             </div>
+
 
                             <div class="english-text">
                                 Any client or broker who violates the
@@ -1237,20 +1971,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 05
+                    ================================================== -->
 
-                    <!-- NOTE 05 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-05"
+                    >
 
                         <div class="important-note-number">
                             05
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-auction.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1258,11 +2001,13 @@
                                 No Compromise On Auction Rules
                             </h2>
 
+
                             <div class="gujarati-text">
                                 ઓક્શન માટેના ઉપરોક્ત નિયમમાં કોઈપણ
                                 બાંધછોડ કરવામાં આવશે નહી જેની દરેક
                                 કલાઈન્ટ તેમજ બ્રોકર મિત્રો એ ખાસ નોંધ લેવી.
                             </div>
+
 
                             <div class="english-text">
                                 No compromise will be made in the above
@@ -1275,20 +2020,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 06
+                    ================================================== -->
 
-                    <!-- NOTE 06 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-06"
+                    >
 
                         <div class="important-note-number">
                             06
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-registration.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1296,10 +2050,12 @@
                                 Agreement & Understanding
                             </h2>
 
+
                             <div class="gujarati-text">
                                 અમે ઓક્શન માટેના ઉપરના નિયમ ને પૂરેપૂરું
                                 સમજી ગયેલ છીએ અને અમે તેની સાથે સહમત છીએ.
                             </div>
+
 
                             <div class="english-text">
                                 We fully understand the above rules
@@ -1311,20 +2067,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 07
+                    ================================================== -->
 
-                    <!-- NOTE 07 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-07"
+                    >
 
                         <div class="important-note-number">
                             07
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-client.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1332,17 +2097,20 @@
                                 Participation Means Acceptance
                             </h2>
 
+
                             <div class="gujarati-text">
                                 જો કલાઈન્ટ ઓક્શન માં ભાગ લેશે તો એવું
                                 માનવામાં આવશે કે તેઓ ઉપરોક્ત તમામ નિયમ
                                 બરાબર સમજ્યા છે અને એની સાથે સહમત છે.
                             </div>
 
+
                             <div class="english-text">
                                 Your participation in the auction confirms
                                 that you have fully understood and agree
                                 with all the above auction rules.
                             </div>
+
 
                             <div class="acceptance-badge">
                                 PARTICIPATION = ACCEPTANCE
@@ -1353,20 +2121,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 08
+                    ================================================== -->
 
-                    <!-- NOTE 08 -->
-                    <article class="important-note note-warning reveal">
+                    <article
+                        class="important-note note-warning reveal"
+                        id="note-08"
+                    >
 
                         <div class="important-note-number">
                             08
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-penalty.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1374,10 +2151,12 @@
                                 If You Do Not Agree
                             </h2>
 
+
                             <div class="gujarati-text">
                                 જો તમે ઉપરોક્ત નિયમ સાથે સહમત નથી
                                 તો ઓક્શન માં ભાગ લેવો નહિ.
                             </div>
+
 
                             <div class="english-text">
                                 If you do not agree with any of the
@@ -1390,20 +2169,29 @@
                     </article>
 
 
+                    <!-- =================================================
+                         NOTE 09
+                    ================================================== -->
 
-                    <!-- NOTE 09 -->
-                    <article class="important-note reveal">
+                    <article
+                        class="important-note reveal"
+                        id="note-09"
+                    >
 
                         <div class="important-note-number">
                             09
                         </div>
 
+
                         <div class="important-note-icon">
+
                             <img
                                 src="assets/icon-registration.svg"
                                 alt=""
                             >
+
                         </div>
+
 
                         <div>
 
@@ -1411,16 +2199,19 @@
                                 Management Rights
                             </h2>
 
+
                             <div class="gujarati-text">
                                 મેનેજમેન્ટ દ્વારા ઉપરોક્ત નિયમમાં કોઈ પણ
                                 સમયે ફેરફાર કરી શકશે.
                             </div>
+
 
                             <div class="english-text">
                                 The management reserves the right to
                                 change the above rules without any notice
                                 at any time.
                             </div>
+
 
                             <div class="management-badge">
                                 MANAGEMENT RESERVES THE RIGHT TO MODIFY
@@ -1433,10 +2224,9 @@
                 </div>
 
 
-
-                <!-- =========================================
+                <!-- =================================================
                      FINAL ACKNOWLEDGEMENT
-                ========================================== -->
+                ================================================== -->
 
                 <div class="acknowledgement-panel reveal">
 
@@ -1449,25 +2239,30 @@
 
                     </div>
 
+
                     <div class="acknowledgement-content">
 
                         <span>
                             FINAL ACKNOWLEDGEMENT
                         </span>
 
+
                         <h2>
                             Please Read Before Participating
                         </h2>
+
 
                         <p class="gujarati-text">
                             અમે ઓક્શન માટેના ઉપરના નિયમ ને પૂરેપૂરું
                             સમજી ગયેલ છીએ અને અમે તેની સાથે સહમત છીએ.
                         </p>
 
+
                         <p class="english-text">
                             We fully understand the above rules for
                             the auction and we agree with them.
                         </p>
+
 
                         <p class="acknowledgement-warning">
                             By participating in the KIRA Auction,
@@ -1480,20 +2275,27 @@
                 </div>
 
 
+                <!-- =================================================
+                     NOTES FOOTER
+                ================================================== -->
 
-                <!-- FOOTER -->
                 <footer class="content-footer">
 
                     <div>
+
                         <img
                             src="assets/kira.png"
                             alt="KIRA Diam Tech"
                         >
+
                     </div>
 
+
                     <p>
-                        KIRA Auction · Important Notes
+                        KIRA Auction · Important Notes ·
+                        © <span data-current-year></span>
                     </p>
+
 
                     <span>
                         Please read carefully before participating.
@@ -1507,6 +2309,21 @@
 
     </div>
 
+
+    <!-- =====================================================
+         NO JAVASCRIPT MESSAGE
+    ====================================================== -->
+
+    <noscript>
+
+        <div class="noscript-message">
+
+            JavaScript is required for interactive navigation.
+            Please enable JavaScript to use the KIRA Auction dashboard.
+
+        </div>
+
+    </noscript>
 
 
     <!-- =====================================================
