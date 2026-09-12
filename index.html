@@ -2129,7 +2129,577 @@
                 display: block;
             }
         }
-    </style>
+    
+/* =========================================================
+   PROFESSIONAL MULTI-COLOUR CONTENT SYSTEM
+   - Black SVG icons are placed on white icon surfaces.
+   - Every rule/note gets its own accent colour.
+   - Existing layout and JavaScript behaviour are preserved.
+   ========================================================= */
+
+:root {
+    /* Main KIRA corporate palette */
+    --navy-950: #061326;
+    --navy-900: #0a1b33;
+    --navy-800: #0e2748;
+    --navy-700: #123b68;
+    --navy-600: #17558f;
+
+    /* Supporting accents */
+    --accent-blue: #2563eb;
+    --accent-violet: #7c3aed;
+    --accent-cyan: #0891b2;
+    --accent-orange: #ea580c;
+    --accent-green: #059669;
+    --accent-pink: #db2777;
+    --accent-indigo: #4f46e5;
+    --accent-teal: #0f766e;
+    --accent-amber: #d97706;
+    --accent-red: #dc2626;
+    --accent-lime: #65a30d;
+    --accent-sky: #0284c7;
+    --accent-purple: #9333ea;
+    --accent-rose: #e11d48;
+
+    /* Light surfaces */
+    --surface-white: #ffffff;
+    --surface-blue: #f4f8fd;
+    --surface-blue-2: #eaf2fb;
+    --border-blue: #cbd9ea;
+    --text-dark: #0b1f38;
+    --text-muted: #52657d;
+}
+
+/* Black SVGs need a light surface so they remain visible. */
+.nav-icon,
+.rule-icon,
+.important-note-icon,
+.intro-icon,
+.ack-icon {
+    background: #ffffff !important;
+    border-color: rgba(0,0,0,.10) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,.14);
+}
+
+.nav-icon img,
+.rule-icon img,
+.important-note-icon img,
+.intro-icon img,
+.ack-icon img {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Navigation icons: varied colour frames */
+.nav-button:nth-child(1) .nav-icon { box-shadow: inset 0 0 0 3px rgba(59,130,246,.16), 0 8px 20px rgba(0,0,0,.14); }
+.nav-button:nth-child(2) .nav-icon { box-shadow: inset 0 0 0 3px rgba(139,92,246,.16), 0 8px 20px rgba(0,0,0,.14); }
+.nav-button:nth-child(3) .nav-icon { box-shadow: inset 0 0 0 3px rgba(20,184,166,.16), 0 8px 20px rgba(0,0,0,.14); }
+
+/* Rules: each card gets a different professional accent. */
+.rule-card {
+    --accent: #3b82f6;
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent) !important;
+    background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
+        linear-gradient(145deg, rgba(17,31,51,.94), rgba(8,16,28,.97)) !important;
+}
+
+.rule-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    border-radius: 24px 0 0 24px;
+    background: var(--accent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 40%, transparent);
+    content: "";
+}
+
+.rule-card:nth-child(1)  { --accent: var(--accent-blue); }
+.rule-card:nth-child(2)  { --accent: var(--accent-violet); }
+.rule-card:nth-child(3)  { --accent: var(--accent-cyan); }
+.rule-card:nth-child(4)  { --accent: var(--accent-orange); }
+.rule-card:nth-child(5)  { --accent: var(--accent-green); }
+.rule-card:nth-child(6)  { --accent: var(--accent-pink); }
+.rule-card:nth-child(7)  { --accent: var(--accent-indigo); }
+.rule-card:nth-child(8)  { --accent: var(--accent-teal); }
+.rule-card:nth-child(9)  { --accent: var(--accent-amber); }
+.rule-card:nth-child(10) { --accent: var(--accent-red); }
+.rule-card:nth-child(11) { --accent: var(--accent-lime); }
+.rule-card:nth-child(12) { --accent: var(--accent-sky); }
+.rule-card:nth-child(13) { --accent: var(--accent-purple); }
+.rule-card:nth-child(14) { --accent: var(--accent-rose); }
+
+.rule-card .rule-number {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    color: color-mix(in srgb, var(--accent) 82%, white);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 18%, transparent), rgba(7,15,27,.8));
+}
+
+.rule-card .rule-icon {
+    border-color: color-mix(in srgb, var(--accent) 35%, #000) !important;
+}
+
+.rule-card .rule-content h2 {
+    color: color-mix(in srgb, var(--accent) 74%, white) !important;
+}
+
+.rule-card .panel-label,
+.rule-card .auction-link,
+.rule-card .company-flow b,
+.rule-card .carat-notice b,
+.rule-card .highlight-box strong,
+.rule-card .rate-box strong,
+.rule-card .deadline-box strong {
+    color: color-mix(in srgb, var(--accent) 78%, white);
+}
+
+.rule-card .auction-link,
+.rule-card .highlight-box,
+.rule-card .rate-box,
+.rule-card .deadline-box > div {
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.rule-card .info-chip {
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.rule-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+    box-shadow:
+        0 22px 45px rgba(0,0,0,.27),
+        0 0 35px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* Important notes: nine separate accents. */
+.important-note {
+    --accent: #3b82f6;
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+    background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 35%),
+        linear-gradient(145deg, rgba(17,31,51,.93), rgba(7,15,27,.97)) !important;
+}
+
+.important-note:nth-child(1) { --accent: var(--accent-blue); }
+.important-note:nth-child(2) { --accent: var(--accent-cyan); }
+.important-note:nth-child(3) { --accent: var(--accent-amber); }
+.important-note:nth-child(4) { --accent: var(--accent-red); }
+.important-note:nth-child(5) { --accent: var(--accent-violet); }
+.important-note:nth-child(6) { --accent: var(--accent-green); }
+.important-note:nth-child(7) { --accent: var(--accent-pink); }
+.important-note:nth-child(8) { --accent: var(--accent-orange); }
+.important-note:nth-child(9) { --accent: var(--accent-indigo); }
+
+.important-note::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 16px 0 0 16px;
+    background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 38%, transparent);
+    content: "";
+}
+
+.important-note .important-note-number {
+    border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+    color: color-mix(in srgb, var(--accent) 80%, white);
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.important-note h2 {
+    color: color-mix(in srgb, var(--accent) 72%, white) !important;
+}
+
+.important-note:hover {
+    border-color: color-mix(in srgb, var(--accent) 48%, transparent) !important;
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.27),
+        0 0 30px color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+/* Keep danger notes visibly red without making the whole interface red. */
+.important-note.note-warning {
+    --accent: var(--accent-red);
+}
+
+/* Better colour hierarchy for shared UI elements. */
+.intro-panel {
+    border-left: 4px solid var(--accent-cyan);
+    background:
+        linear-gradient(90deg, rgba(6,182,212,.08), rgba(13,25,42,.76) 38%);
+}
+
+.acknowledgement-panel {
+    border-top: 4px solid var(--accent-green);
+    background:
+        radial-gradient(circle at 90% 20%, rgba(34,197,94,.10), transparent 20rem),
+        linear-gradient(145deg, rgba(19,37,61,.94), rgba(7,15,27,.97));
+}
+
+.appointment-section {
+    border-top: 4px solid var(--accent-violet);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(139,92,246,.10), transparent 25rem),
+        rgba(11,23,39,.86);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: rgba(139,92,246,.65);
+    box-shadow: 0 0 0 3px rgba(139,92,246,.10);
+}
+
+/* Make the main section surfaces less monochromatic. */
+.content-section[data-panel="terms"] .content-wrap {
+    --section-accent: #3b82f6;
+}
+
+.content-section[data-panel="notes"] .content-wrap {
+    --section-accent: #8b5cf6;
+}
+
+.notes-hero {
+    border-color: rgba(139,92,246,.40);
+    background:
+        radial-gradient(circle at 82% 50%, rgba(139,92,246,.15), transparent 19rem),
+        linear-gradient(135deg, rgba(22,31,57,.98), rgba(7,12,24,.98));
+}
+
+.notes-hero h1 span {
+    color: #b89cff;
+}
+
+@media (max-width: 760px) {
+    .rule-card::before,
+    .important-note::before {
+        width: 3px;
+    }
+
+    .rule-card,
+    .important-note {
+        border-radius: 18px;
+    }
+}
+
+/* Graceful fallback for browsers without color-mix. */
+@supports not (color: color-mix(in srgb, red 50%, white)) {
+    .rule-card,
+    .important-note {
+        border-color: rgba(255,255,255,.12) !important;
+    }
+}
+
+
+/* =========================================================
+   KIRA LIGHT CORPORATE THEME
+   White + Dark Navy + Multi-Accent
+   ========================================================= */
+
+/* Global surfaces and typography */
+body {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(37,99,235,.07), transparent 25rem),
+        radial-gradient(circle at 90% 15%, rgba(8,145,178,.06), transparent 25rem),
+        #f7faff !important;
+    color: var(--text-dark) !important;
+}
+
+header,
+.navbar,
+.site-header,
+nav {
+    background: rgba(255,255,255,.96) !important;
+    color: var(--navy-950) !important;
+    border-bottom: 1px solid var(--border-blue) !important;
+    box-shadow: 0 8px 28px rgba(10,27,51,.08) !important;
+}
+
+a {
+    color: var(--navy-700);
+}
+
+a:hover {
+    color: var(--accent-blue);
+}
+
+/* Hero / banner */
+.hero,
+.hero-section,
+.page-hero,
+.notes-hero {
+    background:
+        linear-gradient(135deg, rgba(6,19,38,.98), rgba(14,39,72,.96) 55%, rgba(23,85,143,.92)) !important;
+    color: #ffffff !important;
+    border-color: rgba(37,99,235,.35) !important;
+}
+
+.hero h1,
+.hero h2,
+.hero h3,
+.hero p,
+.page-hero h1,
+.page-hero p,
+.notes-hero h1,
+.notes-hero p {
+    color: #ffffff !important;
+}
+
+.notes-hero h1 span {
+    color: #7dd3fc !important;
+}
+
+/* Main content sections */
+.content-section,
+section {
+    color: var(--text-dark);
+}
+
+.content-section:nth-of-type(even) {
+    background: #ffffff !important;
+}
+
+.content-section:nth-of-type(odd) {
+    background: #f4f8fd !important;
+}
+
+/* Intro / acknowledgement / appointment areas */
+.intro-panel {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-left: 5px solid var(--accent-cyan) !important;
+    background: linear-gradient(100deg, #ffffff, #eef8fb) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+.acknowledgement-panel {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-top: 5px solid var(--accent-green) !important;
+    background: linear-gradient(135deg, #ffffff, #effaf6) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+.appointment-section {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-top: 5px solid var(--accent-violet) !important;
+    background: linear-gradient(135deg, #ffffff, #f4efff) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+/* Rule cards: clean white cards, dark-blue text, unique accent */
+.rule-card {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #d5e0ed !important;
+    box-shadow: 0 12px 28px rgba(10,27,51,.08) !important;
+}
+
+.rule-card::before {
+    width: 6px;
+    background: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+.rule-card .rule-number {
+    background: var(--surface-blue) !important;
+    color: var(--accent) !important;
+    border: 2px solid color-mix(in srgb, var(--accent) 35%, white) !important;
+}
+
+.rule-card .rule-content h2,
+.rule-card .rule-content h3 {
+    color: var(--navy-800) !important;
+}
+
+.rule-card p,
+.rule-card li,
+.rule-card .rule-content {
+    color: #3f536c !important;
+}
+
+.rule-card .panel-label,
+.rule-card .auction-link,
+.rule-card .company-flow b,
+.rule-card .carat-notice b,
+.rule-card .highlight-box strong,
+.rule-card .rate-box strong,
+.rule-card .deadline-box strong {
+    color: var(--accent) !important;
+}
+
+.rule-card .auction-link,
+.rule-card .highlight-box,
+.rule-card .rate-box,
+.rule-card .deadline-box > div,
+.rule-card .info-chip {
+    background: color-mix(in srgb, var(--accent) 6%, white) !important;
+    border-color: color-mix(in srgb, var(--accent) 25%, white) !important;
+}
+
+.rule-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent) 50%, #d5e0ed) !important;
+    box-shadow: 0 18px 38px rgba(10,27,51,.13) !important;
+}
+
+/* Important notes: white cards with individual accent colours */
+.important-note {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #d5e0ed !important;
+    box-shadow: 0 10px 25px rgba(10,27,51,.07) !important;
+}
+
+.important-note::before {
+    width: 5px;
+    background: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+.important-note h2,
+.important-note h3 {
+    color: var(--navy-800) !important;
+}
+
+.important-note p,
+.important-note li {
+    color: #4b6078 !important;
+}
+
+.important-note .important-note-number {
+    color: var(--accent) !important;
+    background: color-mix(in srgb, var(--accent) 7%, white) !important;
+    border-color: color-mix(in srgb, var(--accent) 30%, white) !important;
+}
+
+.important-note:hover {
+    border-color: color-mix(in srgb, var(--accent) 42%, #d5e0ed) !important;
+    box-shadow: 0 16px 34px rgba(10,27,51,.11) !important;
+}
+
+/* Black SVG icons stay on white boxes */
+.nav-icon,
+.rule-icon,
+.important-note-icon,
+.intro-icon,
+.ack-icon {
+    background: #ffffff !important;
+    border: 1px solid #d7e1ed !important;
+    box-shadow: 0 5px 14px rgba(10,27,51,.10) !important;
+}
+
+.nav-icon img,
+.rule-icon img,
+.important-note-icon img,
+.intro-icon img,
+.ack-icon img {
+    background: #ffffff !important;
+    filter: none !important;
+}
+
+/* Form */
+.field label,
+.form-label {
+    color: var(--navy-800) !important;
+}
+
+.field input,
+.field select,
+.field textarea {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd9ea !important;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #8493a6 !important;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.10) !important;
+}
+
+/* Buttons */
+button,
+.btn,
+.cta,
+.primary-btn {
+    background: linear-gradient(135deg, var(--navy-800), var(--accent-blue)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 8px 18px rgba(23,85,143,.20) !important;
+}
+
+button:hover,
+.btn:hover,
+.cta:hover,
+.primary-btn:hover {
+    background: linear-gradient(135deg, var(--navy-700), #1d4ed8) !important;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: var(--navy-950) !important;
+    color: #dbeafe !important;
+    border-top: 4px solid var(--accent-blue) !important;
+}
+
+footer a {
+    color: #93c5fd !important;
+}
+
+/* Tables / badges / small UI */
+table {
+    background: #ffffff !important;
+    color: var(--text-dark) !important;
+    border-color: #d5e0ed !important;
+}
+
+th {
+    background: var(--navy-800) !important;
+    color: #ffffff !important;
+}
+
+td {
+    border-color: #dbe5f0 !important;
+}
+
+.badge,
+.tag,
+.chip {
+    background: var(--surface-blue-2) !important;
+    color: var(--navy-700) !important;
+    border-color: #cbd9ea !important;
+}
+
+/* Better mobile contrast */
+@media (max-width: 760px) {
+    body {
+        background: #f7faff !important;
+    }
+
+    .rule-card,
+    .important-note,
+    .intro-panel,
+    .acknowledgement-panel,
+    .appointment-section {
+        box-shadow: 0 8px 22px rgba(10,27,51,.07) !important;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -2144,7 +2714,7 @@
 
         <div class="sidebar-brand">
             <a href="#terms" data-home>
-                <img src="kira.png" alt="KIRA Diam Tech" class="sidebar-logo">
+                <img src="assets/kira.png" alt="KIRA Diam Tech" class="sidebar-logo">
                 <span class="sidebar-brand-copy">
                     <strong>DIAM TECH</strong>
                     <span>AUCTION</span>
@@ -2167,7 +2737,7 @@
             >
                 <span class="nav-number">01</span>
                 <span class="nav-icon">
-                    <img src="icon-auction.svg" alt="">
+                    <img src="assets/icon-auction.svg" alt="">
                 </span>
                 <span class="nav-text">
                     <strong>Terms &</strong>
@@ -2185,7 +2755,7 @@
             >
                 <span class="nav-number">02</span>
                 <span class="nav-icon">
-                    <img src="icon-penalty.svg" alt="">
+                    <img src="assets/icon-penalty.svg" alt="">
                 </span>
                 <span class="nav-text">
                     <strong>Important</strong>
@@ -2315,7 +2885,7 @@
 
                         <div class="hero-core">
                             <img
-                                src="hero-gavel-3d.png"
+                                src="assets/hero-gavel-3d.png"
                                 alt="KIRA Auction Gavel"
                                 class="hero-gavel"
                             >
@@ -2333,7 +2903,7 @@
                 <div class="intro-panel reveal">
 
                     <div class="intro-icon">
-                        <img src="icon-auction.svg" alt="">
+                        <img src="assets/icon-auction.svg" alt="">
                     </div>
 
                     <div>
@@ -2354,7 +2924,7 @@
                         <div class="rule-number">01</div>
 
                         <div class="rule-icon">
-                            <img src="icon-auction.svg" alt="Auction">
+                            <img src="assets/icon-auction.svg" alt="Auction">
                         </div>
 
                         <div class="rule-content">
@@ -2389,7 +2959,7 @@
                         <div class="rule-number">02</div>
 
                         <div class="rule-icon">
-                            <img src="icon-deadline.svg" alt="Payment Deadline">
+                            <img src="assets/icon-deadline.svg" alt="Payment Deadline">
                         </div>
 
                         <div class="rule-content">
@@ -2435,7 +3005,7 @@
                         <div class="rule-number">03</div>
 
                         <div class="rule-icon">
-                            <img src="icon-delivery.svg" alt="Delivery">
+                            <img src="assets/icon-delivery.svg" alt="Delivery">
                         </div>
 
                         <div class="rule-content">
@@ -2466,7 +3036,7 @@
                         <div class="rule-number">04</div>
 
                         <div class="rule-icon">
-                            <img src="icon-billing.svg" alt="Billing">
+                            <img src="assets/icon-billing.svg" alt="Billing">
                         </div>
 
                         <div class="rule-content">
@@ -2498,7 +3068,7 @@
                         <div class="rule-number">05</div>
 
                         <div class="rule-icon">
-                            <img src="icon-registration.svg" alt="Registration">
+                            <img src="assets/icon-registration.svg" alt="Registration">
                         </div>
 
                         <div class="rule-content">
@@ -2525,7 +3095,7 @@
                         <div class="rule-number">06</div>
 
                         <div class="rule-icon">
-                            <img src="icon-currency.svg" alt="Currency">
+                            <img src="assets/icon-currency.svg" alt="Currency">
                         </div>
 
                         <div class="rule-content">
@@ -2558,7 +3128,7 @@
                         <div class="rule-number">07</div>
 
                         <div class="rule-icon">
-                            <img src="icon-inspection.svg" alt="Inspection">
+                            <img src="assets/icon-inspection.svg" alt="Inspection">
                         </div>
 
                         <div class="rule-content">
@@ -2594,7 +3164,7 @@
                         <div class="rule-number">08</div>
 
                         <div class="rule-icon">
-                            <img src="icon-auction.svg" alt="Auction">
+                            <img src="assets/icon-auction.svg" alt="Auction">
                         </div>
 
                         <div class="rule-content">
@@ -2620,7 +3190,7 @@
                         <div class="rule-number">09</div>
 
                         <div class="rule-icon">
-                            <img src="icon-auction.svg" alt="Bidding Priority">
+                            <img src="assets/icon-auction.svg" alt="Bidding Priority">
                         </div>
 
                         <div class="rule-content">
@@ -2650,7 +3220,7 @@
                         <div class="rule-number">10</div>
 
                         <div class="rule-icon">
-                            <img src="icon-inspection.svg" alt="Carat Inspection">
+                            <img src="assets/icon-inspection.svg" alt="Carat Inspection">
                         </div>
 
                         <div class="rule-content">
@@ -2684,7 +3254,7 @@
                         <div class="rule-number">11</div>
 
                         <div class="rule-icon">
-                            <img src="icon-penalty.svg" alt="Penalty">
+                            <img src="assets/icon-penalty.svg" alt="Penalty">
                         </div>
 
                         <div class="rule-content">
@@ -2730,7 +3300,7 @@
                         <div class="rule-number">12</div>
 
                         <div class="rule-icon">
-                            <img src="icon-deadline.svg" alt="Penalty Deadline">
+                            <img src="assets/icon-deadline.svg" alt="Penalty Deadline">
                         </div>
 
                         <div class="rule-content">
@@ -2777,7 +3347,7 @@
                         <div class="rule-number">13</div>
 
                         <div class="rule-icon">
-                            <img src="icon-billing.svg" alt="Billing Company">
+                            <img src="assets/icon-billing.svg" alt="Billing Company">
                         </div>
 
                         <div class="rule-content">
@@ -2809,7 +3379,7 @@
                         <div class="rule-number">14</div>
 
                         <div class="rule-icon">
-                            <img src="icon-brokerage.svg" alt="Brokerage">
+                            <img src="assets/icon-brokerage.svg" alt="Brokerage">
                         </div>
 
                         <div class="rule-content">
@@ -2918,7 +3488,7 @@
                 <footer class="content-footer">
 
                     <img
-                        src="kira.png"
+                        src="assets/kira.png"
                         alt="KIRA Diam Tech"
                         class="footer-logo"
                     >
@@ -2974,7 +3544,7 @@
                         <div class="notes-orbit"></div>
 
                         <img
-                            src="hero-gavel-3d.png"
+                            src="assets/hero-gavel-3d.png"
                             alt="KIRA Auction"
                             class="notes-gavel"
                         >
@@ -2990,7 +3560,7 @@
                         <div class="important-note-number">01</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-currency.svg" alt="">
+                            <img src="assets/icon-currency.svg" alt="">
                         </div>
 
                         <div>
@@ -3014,7 +3584,7 @@
                         <div class="important-note-number">02</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-inspection.svg" alt="">
+                            <img src="assets/icon-inspection.svg" alt="">
                         </div>
 
                         <div>
@@ -3038,7 +3608,7 @@
                         <div class="important-note-number">03</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-auction.svg" alt="">
+                            <img src="assets/icon-auction.svg" alt="">
                         </div>
 
                         <div>
@@ -3066,7 +3636,7 @@
                         <div class="important-note-number">04</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-penalty.svg" alt="">
+                            <img src="assets/icon-penalty.svg" alt="">
                         </div>
 
                         <div>
@@ -3093,7 +3663,7 @@
                         <div class="important-note-number">05</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-auction.svg" alt="">
+                            <img src="assets/icon-auction.svg" alt="">
                         </div>
 
                         <div>
@@ -3119,7 +3689,7 @@
                         <div class="important-note-number">06</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-registration.svg" alt="">
+                            <img src="assets/icon-registration.svg" alt="">
                         </div>
 
                         <div>
@@ -3143,7 +3713,7 @@
                         <div class="important-note-number">07</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-client.svg" alt="">
+                            <img src="assets/icon-client.svg" alt="">
                         </div>
 
                         <div>
@@ -3173,7 +3743,7 @@
                         <div class="important-note-number">08</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-penalty.svg" alt="">
+                            <img src="assets/icon-penalty.svg" alt="">
                         </div>
 
                         <div>
@@ -3198,7 +3768,7 @@
                         <div class="important-note-number">09</div>
 
                         <div class="important-note-icon">
-                            <img src="icon-registration.svg" alt="">
+                            <img src="assets/icon-registration.svg" alt="">
                         </div>
 
                         <div>
@@ -3227,7 +3797,7 @@
                 <div class="acknowledgement-panel reveal">
 
                     <div class="ack-icon">
-                        <img src="icon-auction.svg" alt="">
+                        <img src="assets/icon-auction.svg" alt="">
                     </div>
 
                     <div class="ack-content">
@@ -3272,7 +3842,7 @@
                 <footer class="content-footer">
 
                     <img
-                        src="kira.png"
+                        src="assets/kira.png"
                         alt="KIRA Diam Tech"
                         class="footer-logo"
                     >
