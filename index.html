@@ -1,8 +1,4787 @@
-<html>
-    <head>
-        <title>MY FIRST WEB PAGE</title>
-        <BODY>
-            HI MY NAME IS ANSH UPADHYAY
-        </BODY>
-    </head>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07111f">
+    <meta name="color-scheme" content="dark">
+    <meta name="application-name" content="KIRA Auction">
+    <meta name="description" content="KIRA Diam Tech official auction terms, conditions and important participation notes.">
+    <title>KIRA AUCTION | Official Terms & Conditions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy-950: #050b15;
+            --navy-900: #07111f;
+            --navy-850: #0a1627;
+            --navy-800: #0d1a2d;
+            --navy-750: #12233b;
+            --navy-700: #182b46;
+            --navy-650: #203653;
+
+            --gold-300: #f7df9a;
+            --gold-400: #e9c66b;
+            --gold-500: #d9a441;
+            --gold-600: #b98122;
+            --gold-700: #805b17;
+
+            --gold-soft: rgba(217,164,65,.12);
+            --gold-line: rgba(217,164,65,.32);
+            --gold-strong: rgba(233,198,107,.7);
+
+            --white: #ffffff;
+            --text: #f5f3ed;
+            --text-soft: #c4c9d2;
+            --text-muted: #7f899b;
+
+            --green: #48d39a;
+            --red: #e55353;
+            --red-soft: rgba(229,83,83,.12);
+
+            --surface: rgba(10,22,39,.88);
+            --surface-light: rgba(18,35,59,.72);
+
+            --sidebar-width: 286px;
+            --header-height: 74px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+
+            --shadow-lg: 0 30px 80px rgba(0,0,0,.45);
+            --shadow-md: 0 18px 45px rgba(0,0,0,.32);
+            --shadow-gold: 0 0 45px rgba(217,164,65,.13);
+
+            --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+            --font-gujarati: "Noto Sans Gujarati", "Nirmala UI", Shruti, sans-serif;
+
+            --ease: cubic-bezier(.22,.61,.36,1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: var(--navy-950);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 8% 8%, rgba(217,164,65,.08), transparent 28rem),
+                radial-gradient(circle at 90% 18%, rgba(30,76,126,.15), transparent 34rem),
+                radial-gradient(circle at 70% 100%, rgba(217,164,65,.035), transparent 30rem),
+                var(--navy-950);
+            color: var(--text);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+            background-size: 55px 55px;
+            mask-image: linear-gradient(to bottom, black, transparent 88%);
+            content: "";
+            pointer-events: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        p,
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+        }
+
+        ::selection {
+            background: rgba(217,164,65,.3);
+            color: #fff9e8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050a13;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border: 2px solid #050a13;
+            border-radius: 999px;
+            background: linear-gradient(180deg,var(--gold-400),var(--gold-700));
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg,var(--gold-300),var(--gold-500));
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-600) #050a13;
+        }
+
+        .gujarati-text {
+            font-family: var(--font-gujarati);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #e8e8e5;
+        }
+
+        .english-text {
+            color: var(--text-soft);
+            line-height: 1.72;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--gold-400);
+            color: #161008;
+            transform: translateY(-150%);
+            transition: transform .2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        /* APPLICATION */
+
+        .app-shell {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) minmax(0,1fr);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            width: var(--sidebar-width);
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid rgba(217,164,65,.16);
+            background:
+                linear-gradient(180deg, rgba(12,27,46,.97), rgba(4,12,23,.99)),
+                var(--navy-900);
+            box-shadow: 18px 0 60px rgba(0,0,0,.28);
+        }
+
+        .sidebar::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(217,164,65,.38),
+                transparent
+            );
+            content: "";
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            min-height: 148px;
+            padding: 24px 22px;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+
+        .sidebar-brand a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sidebar-logo {
+            width: 158px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,.28));
+        }
+
+        .sidebar-brand-copy {
+            margin-left: 14px;
+        }
+
+        .sidebar-brand-copy strong {
+            display: block;
+            color: var(--gold-300);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .14em;
+        }
+
+        .sidebar-brand-copy span {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .13em;
+        }
+
+        .sidebar-heading {
+            padding: 32px 22px 18px;
+        }
+
+        .sidebar-heading span {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold-300);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .sidebar-heading span::after {
+            width: 48px;
+            height: 1px;
+            background: var(--gold-500);
+            opacity: .6;
+            content: "";
+        }
+
+        .agreement-navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 8px;
+        }
+
+        .nav-button {
+            position: relative;
+            display: grid;
+            grid-template-columns: 42px 44px minmax(0,1fr) 22px;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 70px;
+            padding: 9px 13px;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            background: transparent;
+            color: var(--text-muted);
+            text-align: left;
+            transition:
+                background .3s var(--ease),
+                border-color .3s var(--ease),
+                color .3s var(--ease),
+                transform .3s var(--ease),
+                box-shadow .3s var(--ease);
+        }
+
+        .nav-button:hover {
+            border-color: rgba(217,164,65,.22);
+            background: rgba(255,255,255,.035);
+            color: var(--text);
+            transform: translateX(3px);
+        }
+
+        .nav-button.active {
+            border-color: rgba(217,164,65,.42);
+            background:
+                linear-gradient(100deg, rgba(217,164,65,.13), rgba(217,164,65,.025));
+            color: var(--gold-300);
+            box-shadow:
+                inset 0 0 35px rgba(217,164,65,.035),
+                0 12px 30px rgba(0,0,0,.16);
+        }
+
+        .nav-button.active::before {
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: -1px;
+            width: 3px;
+            border-radius: 0 4px 4px 0;
+            background: var(--gold-500);
+            box-shadow: 0 0 15px rgba(217,164,65,.7);
+            content: "";
+        }
+
+        .nav-number {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(217,164,65,.4);
+            border-radius: 50%;
+            color: var(--gold-300);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .nav-icon {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .nav-icon img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            filter: brightness(1.15) saturate(.7);
+        }
+
+        .nav-text strong {
+            display: block;
+            color: currentColor;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .nav-text span {
+            display: block;
+            margin-top: 2px;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .nav-button.active .nav-text span {
+            color: rgba(233,198,107,.7);
+        }
+
+        .nav-arrow {
+            color: var(--gold-500);
+            font-size: 18px;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: .25s ease;
+        }
+
+        .nav-button:hover .nav-arrow,
+        .nav-button.active .nav-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 24px 16px 20px;
+            border-top: 1px solid rgba(255,255,255,.055);
+        }
+
+        .official-status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text-soft);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 13px rgba(72,211,154,.65);
+            animation: pulseDot 2.2s ease-in-out infinite;
+        }
+
+        .sidebar-bottom p {
+            margin: 12px 0 0;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+        /* MAIN */
+
+        .main-content {
+            grid-column: 2;
+            min-width: 0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: var(--header-height);
+            padding: 0 clamp(24px,4vw,58px);
+            border-bottom: 1px solid rgba(255,255,255,.055);
+            background: rgba(5,11,21,.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .header-left,
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left {
+            gap: 18px;
+        }
+
+        .header-kira {
+            color: var(--gold-300);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .16em;
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 25px;
+            background: rgba(255,255,255,.12);
+        }
+
+        .header-title {
+            color: var(--text-soft);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .header-right {
+            gap: 13px;
+        }
+
+        .official-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            padding: 0 16px;
+            border: 1px solid rgba(72,211,154,.3);
+            border-radius: 999px;
+            background: rgba(72,211,154,.045);
+            color: #76ddb2;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .official-pill::before {
+            display: grid;
+            place-items: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(72,211,154,.14);
+            content: "✓";
+        }
+
+        .header-profile {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(217,164,65,.45);
+            border-radius: 50%;
+            background: rgba(217,164,65,.035);
+            color: var(--gold-300);
+        }
+
+        .profile-head {
+            width: 8px;
+            height: 8px;
+            margin-bottom: 4px;
+            border: 1px solid currentColor;
+            border-radius: 50%;
+        }
+
+        .profile-body {
+            width: 17px;
+            height: 8px;
+            border: 1px solid currentColor;
+            border-radius: 10px 10px 7px 7px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold-line);
+            border-radius: 10px;
+            background: rgba(217,164,65,.05);
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            margin: 4px auto;
+            background: var(--gold-300);
+        }
+
+        /* PANELS */
+
+        .content-section {
+            display: none;
+            min-height: calc(100vh - var(--header-height));
+            padding: clamp(24px,4vw,58px);
+            animation: panelEnter .65s var(--ease) both;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-wrap {
+            width: min(100%, 1660px);
+            margin: 0 auto;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+            display: grid;
+            grid-template-columns: minmax(0,1.1fr) minmax(340px,.9fr);
+            align-items: center;
+            min-height: 430px;
+            padding: clamp(32px,5vw,76px);
+            border: 1px solid rgba(217,164,65,.4);
+            border-radius: var(--radius-xl);
+            background:
+                radial-gradient(circle at 78% 50%, rgba(217,164,65,.14), transparent 18rem),
+                radial-gradient(circle at 100% 0%, rgba(52,93,146,.18), transparent 25rem),
+                linear-gradient(135deg, rgba(18,36,60,.97), rgba(5,12,22,.98));
+            box-shadow: var(--shadow-lg), var(--shadow-gold);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to right, black, transparent 80%);
+            content: "";
+        }
+
+        .hero::after {
+            position: absolute;
+            top: -50%;
+            right: 15%;
+            width: 1px;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(217,164,65,.28), transparent);
+            transform: rotate(28deg);
+            content: "";
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 4;
+            max-width: 780px;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            color: var(--gold-300);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .section-kicker::before {
+            width: 36px;
+            height: 1px;
+            background: var(--gold-500);
+            content: "";
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: var(--font-serif);
+            font-size: clamp(3.4rem,6.3vw,6.6rem);
+            font-weight: 600;
+            line-height: .87;
+            letter-spacing: -.045em;
+            color: #fffdf7;
+        }
+
+        .hero h1 span {
+            display: block;
+            margin-top: 12px;
+            color: var(--gold-300);
+            font-family: var(--font-gujarati);
+            font-size: clamp(2rem,3.6vw,3.8rem);
+            line-height: 1.25;
+            letter-spacing: 0;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            margin: 26px 0 0;
+            color: var(--text-soft);
+            font-size: clamp(.92rem,1.2vw,1.08rem);
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-top: 32px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--gold-300);
+            font-family: var(--font-serif);
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .meta-item span {
+            display: block;
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .meta-line {
+            width: 1px;
+            height: 35px;
+            background: rgba(255,255,255,.12);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: min(100%,520px);
+            aspect-ratio: 1;
+            margin-left: auto;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 55%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(217,164,65,.14);
+            filter: blur(45px);
+            animation: pulseGlow 3.5s ease-in-out infinite;
+        }
+
+        .ring-graphic {
+            position: absolute;
+            width: 82%;
+            aspect-ratio: 1;
+            border: 1px solid rgba(217,164,65,.23);
+            border-radius: 50%;
+            animation: rotateRing 22s linear infinite;
+        }
+
+        .ring-graphic::before,
+        .ring-graphic::after {
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            border: 2px solid var(--gold-400);
+            border-radius: 50%;
+            background: var(--navy-900);
+            box-shadow: 0 0 18px rgba(217,164,65,.8);
+            content: "";
+        }
+
+        .ring-graphic::before {
+            top: -6px;
+            left: 50%;
+        }
+
+        .ring-graphic::after {
+            right: -6px;
+            top: 50%;
+        }
+
+        .ring-outer {
+            width: 98%;
+            border-color: rgba(217,164,65,.1);
+            animation-duration: 34s;
+            animation-direction: reverse;
+        }
+
+        .hero-core {
+            position: relative;
+            z-index: 4;
+            display: grid;
+            place-items: center;
+            width: 45%;
+            aspect-ratio: 1;
+            border: 1px solid rgba(233,198,107,.52);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(217,164,65,.19), rgba(8,17,30,.92) 70%);
+            box-shadow: 0 0 60px rgba(217,164,65,.18);
+            animation: pulseGlow 3.2s ease-in-out infinite;
+        }
+
+        .hero-gavel {
+            width: 74%;
+            max-width: 310px;
+            object-fit: contain;
+            filter: brightness(1.08) saturate(.88) drop-shadow(0 20px 25px rgba(0,0,0,.35));
+            animation: gavelFloat 4.4s ease-in-out infinite;
+        }
+
+        .hero-badge {
+            position: absolute;
+            right: 4%;
+            bottom: 8%;
+            z-index: 8;
+            display: flex;
+            flex-direction: column;
+            min-width: 105px;
+            padding: 13px 16px;
+            border: 1px solid rgba(217,164,65,.35);
+            border-radius: 13px;
+            background: rgba(5,12,22,.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-badge small {
+            color: var(--text-muted);
+            font-size: 8px;
+            letter-spacing: .2em;
+        }
+
+        .hero-badge strong {
+            margin-top: 3px;
+            color: var(--gold-300);
+            font-size: 11px;
+            letter-spacing: .15em;
+        }
+
+        /* INTRO */
+
+        .intro-panel {
+            display: grid;
+            grid-template-columns: 62px minmax(0,1fr);
+            align-items: center;
+            gap: 20px;
+            margin-top: 26px;
+            padding: 22px 26px;
+            border: 1px solid rgba(217,164,65,.2);
+            border-radius: var(--radius-md);
+            background: rgba(13,25,42,.75);
+            box-shadow: var(--shadow-md);
+        }
+
+        .intro-icon {
+            display: grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            border: 1px solid var(--gold-line);
+            border-radius: 14px;
+            background: rgba(217,164,65,.06);
+        }
+
+        .intro-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .panel-label {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--gold-300);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .17em;
+        }
+
+        .intro-panel p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* RULES */
+
+        .rules-container {
+            display: grid;
+            gap: 18px;
+            margin-top: 26px;
+        }
+
+        .rule-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: 58px 54px minmax(0,1fr);
+            gap: 18px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: var(--radius-lg);
+            background:
+                linear-gradient(145deg, rgba(17,31,51,.91), rgba(8,16,28,.95));
+            box-shadow: 0 12px 32px rgba(0,0,0,.2);
+            overflow: hidden;
+            transition:
+                transform .35s var(--ease),
+                border-color .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .rule-card::after {
+            position: absolute;
+            right: -90px;
+            bottom: -110px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(217,164,65,.035);
+            filter: blur(18px);
+            content: "";
+            pointer-events: none;
+        }
+
+        .rule-card:hover {
+            border-color: rgba(217,164,65,.28);
+            box-shadow: 0 22px 45px rgba(0,0,0,.27), 0 0 35px rgba(217,164,65,.045);
+            transform: translateY(-3px);
+        }
+
+        .rule-card.rule-danger {
+            border-color: rgba(229,83,83,.28);
+            background:
+                linear-gradient(145deg, rgba(48,20,27,.78), rgba(12,15,25,.96));
+        }
+
+        .rule-number {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(217,164,65,.35);
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(217,164,65,.12), rgba(7,15,27,.7));
+            color: var(--gold-300);
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .rule-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .rule-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            opacity: .88;
+        }
+
+        .rule-content h2 {
+            margin: 0 0 15px;
+            color: #fffdf7;
+            font-size: clamp(1.05rem,1.6vw,1.35rem);
+            font-weight: 800;
+            letter-spacing: -.02em;
+        }
+
+        .rule-content .gujarati-text {
+            margin-bottom: 12px;
+        }
+
+        .auction-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 16px;
+            padding: 9px 13px;
+            border: 1px solid rgba(217,164,65,.28);
+            border-radius: 9px;
+            background: rgba(217,164,65,.055);
+            color: var(--gold-300);
+            font-size: 11px;
+            font-weight: 800;
+            transition: .25s ease;
+        }
+
+        .auction-link:hover {
+            border-color: var(--gold-400);
+            background: rgba(217,164,65,.13);
+            transform: translateX(3px);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 12px;
+            margin-bottom: 17px;
+        }
+
+        .highlight-box {
+            padding: 15px 17px;
+            border: 1px solid rgba(217,164,65,.16);
+            border-radius: 12px;
+            background: rgba(217,164,65,.045);
+        }
+
+        .highlight-box strong {
+            display: block;
+            color: var(--gold-300);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .highlight-box span {
+            display: block;
+            margin-top: 3px;
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        .info-chip,
+        .warning-chip,
+        .priority-badge,
+        .buyer-badge,
+        .management-badge,
+        .withdrawal-badge,
+        .acceptance-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            margin-top: 16px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+
+        .info-chip {
+            border: 1px solid rgba(115,183,255,.2);
+            background: rgba(115,183,255,.055);
+            color: #93c5f4;
+        }
+
+        .warning-chip,
+        .withdrawal-badge {
+            border: 1px solid rgba(229,83,83,.25);
+            background: rgba(229,83,83,.08);
+            color: #ff8a8a;
+        }
+
+        .priority-badge,
+        .buyer-badge,
+        .management-badge,
+        .acceptance-badge {
+            border: 1px solid rgba(217,164,65,.23);
+            background: rgba(217,164,65,.055);
+            color: var(--gold-300);
+        }
+
+        .rate-box,
+        .deadline-box,
+        .company-flow,
+        .carat-notice,
+        .inspection-points {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .rate-box {
+            justify-content: space-between;
+            padding: 14px 16px;
+            border: 1px solid rgba(217,164,65,.18);
+            border-radius: 11px;
+            background: rgba(217,164,65,.045);
+        }
+
+        .rate-box span,
+        .deadline-box span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .13em;
+        }
+
+        .rate-box strong,
+        .deadline-box strong {
+            color: var(--gold-300);
+            font-size: 13px;
+        }
+
+        .inspection-points span,
+        .company-flow span,
+        .carat-notice span {
+            padding: 8px 10px;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 7px;
+            background: rgba(255,255,255,.025);
+            color: var(--text-soft);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .company-flow b,
+        .carat-notice b {
+            color: var(--gold-500);
+        }
+
+        .penalty-highlight {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: fit-content;
+            margin: 14px 0;
+            padding: 12px 17px;
+            border: 1px solid rgba(229,83,83,.25);
+            border-radius: 12px;
+            background: rgba(229,83,83,.07);
+        }
+
+        .penalty-highlight strong {
+            color: #ff8585;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .penalty-highlight span {
+            max-width: 160px;
+            color: var(--text-soft);
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .danger-label {
+            display: inline-flex;
+            margin-bottom: 9px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            background: rgba(229,83,83,.12);
+            color: #ff8585;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: .13em;
+        }
+
+        .blacklist-warning {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 9px 12px;
+            border: 1px solid rgba(229,83,83,.3);
+            border-radius: 8px;
+            background: rgba(229,83,83,.08);
+            color: #ff9292;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .deadline-box {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+        }
+
+        .deadline-box > div {
+            padding: 14px 15px;
+            border: 1px solid rgba(217,164,65,.14);
+            border-radius: 10px;
+            background: rgba(217,164,65,.035);
+        }
+
+        /* SWITCH / FOOTER */
+
+        .panel-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 28px;
+            padding: 20px 24px;
+            border: 1px solid rgba(217,164,65,.18);
+            border-radius: 17px;
+            background: rgba(13,25,42,.72);
+        }
+
+        .panel-switch strong {
+            display: block;
+            color: var(--gold-300);
+            font-size: 12px;
+            letter-spacing: .08em;
+        }
+
+        .panel-switch span {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 42px;
+            padding: 0 18px;
+            border: 1px solid var(--gold-500);
+            border-radius: 10px;
+            background: linear-gradient(135deg,var(--gold-400),var(--gold-600));
+            color: #1b1407;
+            font-size: 11px;
+            font-weight: 900;
+            box-shadow: 0 9px 25px rgba(217,164,65,.15);
+            transition: .25s ease;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 14px 34px rgba(217,164,65,.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 17px;
+            border: 1px solid rgba(217,164,65,.4);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--gold-300);
+            font-size: 11px;
+            font-weight: 800;
+            transition: .25s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(217,164,65,.1);
+            border-color: var(--gold-400);
+            transform: translateY(-2px);
+        }
+
+        .content-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 36px;
+            padding: 22px 4px 8px;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+
+        .footer-logo {
+            width: 88px;
+            opacity: .72;
+        }
+
+        .content-footer p,
+        .content-footer span {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        /* IMPORTANT NOTES */
+
+        .notes-hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0,1fr) 360px;
+            align-items: center;
+            min-height: 300px;
+            padding: clamp(30px,4vw,55px);
+            border: 1px solid rgba(217,164,65,.34);
+            border-radius: var(--radius-xl);
+            background:
+                radial-gradient(circle at 82% 50%, rgba(217,164,65,.12), transparent 19rem),
+                linear-gradient(135deg, rgba(17,34,57,.97), rgba(5,12,22,.98));
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .notes-hero h1 {
+            margin: 0;
+            font-family: var(--font-serif);
+            font-size: clamp(3.2rem,6vw,6rem);
+            font-weight: 600;
+            line-height: .9;
+            letter-spacing: -.04em;
+        }
+
+        .notes-hero h1 span {
+            color: var(--gold-300);
+        }
+
+        .notes-hero p {
+            max-width: 650px;
+            margin: 20px 0 0;
+            color: var(--text-soft);
+            line-height: 1.8;
+        }
+
+        .notes-hero-visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            aspect-ratio: 1;
+        }
+
+        .notes-orbit {
+            position: absolute;
+            width: 85%;
+            aspect-ratio: 1;
+            border: 1px solid rgba(217,164,65,.2);
+            border-radius: 50%;
+            animation: rotateRing 24s linear infinite;
+        }
+
+        .notes-orbit::before {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            width: 9px;
+            height: 9px;
+            border: 2px solid var(--gold-400);
+            border-radius: 50%;
+            background: var(--navy-900);
+            box-shadow: 0 0 15px rgba(217,164,65,.7);
+            content: "";
+        }
+
+        .notes-gavel {
+            position: relative;
+            z-index: 2;
+            width: 72%;
+            animation: gavelFloat 4.6s ease-in-out infinite;
+            filter: brightness(1.06) saturate(.85) drop-shadow(0 20px 24px rgba(0,0,0,.4));
+        }
+
+        .important-notes-grid {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .important-note {
+            position: relative;
+            display: grid;
+            grid-template-columns: 46px 48px minmax(0,1fr);
+            gap: 15px;
+            min-width: 0;
+            padding: 23px;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: var(--radius-md);
+            background: linear-gradient(145deg,rgba(17,31,51,.9),rgba(7,15,27,.95));
+            box-shadow: 0 13px 35px rgba(0,0,0,.2);
+            overflow: hidden;
+            transition: .35s var(--ease);
+        }
+
+        .important-note:hover {
+            border-color: rgba(217,164,65,.25);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(0,0,0,.27);
+        }
+
+        .important-note.note-warning {
+            border-color: rgba(229,83,83,.27);
+            background: linear-gradient(145deg,rgba(48,20,27,.72),rgba(8,15,25,.96));
+        }
+
+        .important-note-number {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(217,164,65,.35);
+            border-radius: 50%;
+            color: var(--gold-300);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .important-note-icon {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .important-note-icon img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .important-note h2 {
+            margin: 1px 0 10px;
+            color: #fffdf7;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .important-note .gujarati-text {
+            margin-bottom: 8px;
+            font-size: .92rem;
+        }
+
+        .important-note .english-text {
+            font-size: 12px;
+        }
+
+        .acknowledgement-panel {
+            display: grid;
+            grid-template-columns: 76px minmax(0,1fr);
+            gap: 22px;
+            margin-top: 28px;
+            padding: 28px;
+            border: 1px solid rgba(217,164,65,.3);
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at 90% 20%,rgba(217,164,65,.1),transparent 20rem),
+                linear-gradient(145deg,rgba(19,37,61,.9),rgba(7,15,27,.96));
+            box-shadow: var(--shadow-md), var(--shadow-gold);
+        }
+
+        .ack-icon {
+            display: grid;
+            place-items: center;
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--gold-line);
+            border-radius: 18px;
+            background: rgba(217,164,65,.06);
+        }
+
+        .ack-icon img {
+            width: 38px;
+            height: 38px;
+        }
+
+        .ack-content > span {
+            color: var(--gold-300);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: .16em;
+        }
+
+        .ack-content h2 {
+            margin: 7px 0 12px;
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: #fffdf7;
+        }
+
+        .ack-content p {
+            margin: 7px 0;
+        }
+
+        .ack-warning {
+            margin-top: 14px !important;
+            padding: 12px 14px;
+            border-left: 2px solid var(--gold-500);
+            background: rgba(217,164,65,.045);
+            color: var(--text-soft);
+            font-size: 11px;
+        }
+
+        /* APPOINTMENT */
+
+        .appointment-section {
+            margin-top: 30px;
+            padding: 34px;
+            border: 1px solid rgba(217,164,65,.25);
+            border-radius: var(--radius-lg);
+            background: rgba(11,23,39,.8);
+        }
+
+        .appointment-section h2 {
+            margin: 0 0 7px;
+            font-family: var(--font-serif);
+            font-size: 35px;
+        }
+
+        .appointment-section > p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            color: var(--text-soft);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 10px;
+            outline: none;
+            background: rgba(255,255,255,.035);
+            color: var(--text);
+            padding: 12px 13px;
+            transition: .2s ease;
+        }
+
+        .field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: rgba(217,164,65,.55);
+            box-shadow: 0 0 0 3px rgba(217,164,65,.07);
+        }
+
+        .appointment-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .appointment-message {
+            display: none;
+            margin-top: 14px;
+            padding: 12px;
+            border: 1px solid rgba(72,211,154,.25);
+            border-radius: 9px;
+            background: rgba(72,211,154,.06);
+            color: #7ee0b5;
+            font-size: 11px;
+        }
+
+        .appointment-message.show {
+            display: block;
+            animation: sectionEnter .35s ease both;
+        }
+
+        /* MOBILE DRAWER */
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            display: none;
+            background: rgba(0,0,0,.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .mobile-overlay.show {
+            display: block;
+        }
+
+        /* REVEAL */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+                opacity .65s var(--ease),
+                transform .65s var(--ease);
+        }
+
+        /* PRINT */
+
+        .print-only {
+            display: none;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes gavelFloat {
+            0%,
+            100% {
+                transform: translate3d(0,0,0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translate3d(0,-13px,0) rotate(2deg);
+            }
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 38px rgba(217,164,65,.12);
+                opacity: .82;
+            }
+
+            50% {
+                box-shadow: 0 0 72px rgba(217,164,65,.25);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseDot {
+            0%,
+            100% {
+                opacity: .6;
+                transform: scale(.85);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes panelEnter {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sectionEnter {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* LARGE DESKTOP */
+
+        @media (min-width: 1500px) {
+            :root {
+                --sidebar-width: 300px;
+            }
+
+            .content-section {
+                padding: 64px;
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            .rule-card {
+                padding: 32px;
+            }
+
+            .important-notes-grid {
+                grid-template-columns: repeat(3,minmax(0,1fr));
+            }
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1100px) {
+            :root {
+                --sidebar-width: 250px;
+            }
+
+            .sidebar-brand {
+                min-height: 120px;
+                padding: 18px;
+            }
+
+            .sidebar-logo {
+                width: 135px;
+            }
+
+            .sidebar-brand-copy {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: minmax(0,1fr) 300px;
+                min-height: 390px;
+                padding: 40px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem,6vw,5rem);
+            }
+
+            .important-notes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notes-hero {
+                grid-template-columns: minmax(0,1fr) 270px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 760px) {
+            :root {
+                --header-height: 64px;
+                --sidebar-width: 270px;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .app-shell {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-102%);
+                transition: transform .35s var(--ease);
+                box-shadow: 25px 0 70px rgba(0,0,0,.5);
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .mobile-overlay {
+                display: block;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity .3s ease, visibility .3s ease;
+            }
+
+            .mobile-overlay.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .main-content {
+                width: 100%;
+            }
+
+            .top-header {
+                padding: 0 16px;
+            }
+
+            .header-title {
+                display: none;
+            }
+
+            .header-divider {
+                display: none;
+            }
+
+            .official-pill {
+                min-height: 34px;
+                padding: 0 11px;
+                font-size: 8px;
+            }
+
+            .header-profile {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .content-section {
+                min-height: calc(100vh - var(--header-height));
+                padding: 16px;
+            }
+
+            .hero {
+                display: flex;
+                flex-direction: column;
+                min-height: auto;
+                padding: 30px 22px;
+                border-radius: 23px;
+            }
+
+            .hero-copy {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem,14vw,4.6rem);
+            }
+
+            .hero h1 span {
+                font-size: clamp(1.65rem,8vw,2.6rem);
+            }
+
+            .hero-description {
+                margin-top: 20px;
+                font-size: .87rem;
+            }
+
+            .hero-meta {
+                gap: 15px;
+                margin-top: 23px;
+            }
+
+            .meta-item strong {
+                font-size: 25px;
+            }
+
+            .meta-item span {
+                font-size: 7px;
+            }
+
+            .hero-visual {
+                width: min(100%,340px);
+                margin: 20px auto -5px;
+            }
+
+            .intro-panel {
+                grid-template-columns: 48px minmax(0,1fr);
+                gap: 13px;
+                padding: 17px;
+            }
+
+            .intro-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .intro-icon img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .intro-panel p {
+                font-size: 11px;
+            }
+
+            .rule-card {
+                grid-template-columns: 46px minmax(0,1fr);
+                gap: 13px;
+                padding: 20px 17px;
+            }
+
+            .rule-icon {
+                width: 46px;
+                height: 46px;
+            }
+
+            .rule-icon img {
+                width: 27px;
+                height: 27px;
+            }
+
+            .rule-number {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .rule-content {
+                grid-column: 1 / -1;
+            }
+
+            .rule-content h2 {
+                margin-top: 2px;
+                font-size: 1.03rem;
+            }
+
+            .gujarati-text {
+                font-size: .91rem;
+                line-height: 1.85;
+            }
+
+            .english-text {
+                font-size: .82rem;
+                line-height: 1.7;
+            }
+
+            .highlight-grid,
+            .deadline-box,
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-switch {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .content-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .notes-hero {
+                grid-template-columns: 1fr;
+                padding: 30px 22px;
+            }
+
+            .notes-hero h1 {
+                font-size: clamp(3rem,14vw,4.7rem);
+            }
+
+            .notes-hero-visual {
+                width: 260px;
+                margin: 10px auto -10px;
+            }
+
+            .important-note {
+                grid-template-columns: 42px 44px minmax(0,1fr);
+                padding: 18px;
+                gap: 10px;
+            }
+
+            .important-note h2 {
+                font-size: 14px;
+            }
+
+            .important-note .gujarati-text {
+                font-size: .85rem;
+            }
+
+            .important-note .english-text {
+                font-size: .75rem;
+            }
+
+            .acknowledgement-panel {
+                grid-template-columns: 1fr;
+                padding: 21px;
+            }
+
+            .appointment-section {
+                padding: 22px;
+            }
+        }
+
+        /* SMALL MOBILE */
+
+        @media (max-width: 390px) {
+            .top-header {
+                padding: 0 11px;
+            }
+
+            .header-kira {
+                font-size: 10px;
+            }
+
+            .official-pill {
+                padding: 0 8px;
+            }
+
+            .content-section {
+                padding: 11px;
+            }
+
+            .hero {
+                padding: 25px 17px;
+            }
+
+            .hero-meta {
+                gap: 11px;
+            }
+
+            .meta-line {
+                height: 29px;
+            }
+
+            .rule-card {
+                padding: 16px 13px;
+            }
+
+            .important-note {
+                grid-template-columns: 39px minmax(0,1fr);
+            }
+
+            .important-note-icon {
+                display: none;
+            }
+
+            .hero-badge {
+                right: 0;
+                bottom: 4%;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* PRINT */
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 14mm;
+            }
+
+            html,
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .sidebar,
+            .top-header,
+            .mobile-overlay,
+            .mobile-toggle,
+            .panel-switch,
+            .appointment-section,
+            .hero-visual,
+            .notes-hero-visual,
+            .auction-link {
+                display: none !important;
+            }
+
+            .main-content {
+                width: 100% !important;
+            }
+
+            .content-section {
+                display: block !important;
+                min-height: auto !important;
+                padding: 0 !important;
+                color: black !important;
+            }
+
+            .content-section + .content-section {
+                page-break-before: always;
+            }
+
+            .hero,
+            .notes-hero,
+            .rule-card,
+            .important-note,
+            .intro-panel,
+            .acknowledgement-panel {
+                color: black !important;
+                background: white !important;
+                border: 1px solid #c8c8c8 !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+
+            .hero h1,
+            .hero h1 span,
+            .notes-hero h1,
+            .notes-hero h1 span,
+            .rule-content h2,
+            .important-note h2,
+            .ack-content h2 {
+                color: #111 !important;
+            }
+
+            .gujarati-text,
+            .english-text,
+            .hero-description,
+            .intro-panel p,
+            .notes-hero p {
+                color: #222 !important;
+            }
+
+            .rule-card,
+            .important-note {
+                margin-bottom: 12px;
+            }
+
+            .content-footer {
+                border-color: #ccc !important;
+            }
+
+            .print-only {
+                display: block;
+            }
+        }
+    
+/* =========================================================
+   PROFESSIONAL MULTI-COLOUR CONTENT SYSTEM
+   - Black SVG icons are placed on white icon surfaces.
+   - Every rule/note gets its own accent colour.
+   - Existing layout and JavaScript behaviour are preserved.
+   ========================================================= */
+
+:root {
+    /* Main KIRA corporate palette */
+    --navy-950: #061326;
+    --navy-900: #0a1b33;
+    --navy-800: #0e2748;
+    --navy-700: #123b68;
+    --navy-600: #17558f;
+
+    /* Supporting accents */
+    --accent-blue: #2563eb;
+    --accent-violet: #7c3aed;
+    --accent-cyan: #0891b2;
+    --accent-orange: #ea580c;
+    --accent-green: #059669;
+    --accent-pink: #db2777;
+    --accent-indigo: #4f46e5;
+    --accent-teal: #0f766e;
+    --accent-amber: #d97706;
+    --accent-red: #dc2626;
+    --accent-lime: #65a30d;
+    --accent-sky: #0284c7;
+    --accent-purple: #9333ea;
+    --accent-rose: #e11d48;
+
+    /* Light surfaces */
+    --surface-white: #ffffff;
+    --surface-blue: #f4f8fd;
+    --surface-blue-2: #eaf2fb;
+    --border-blue: #cbd9ea;
+    --text-dark: #0b1f38;
+    --text-muted: #52657d;
+}
+
+/* Black SVGs need a light surface so they remain visible. */
+.nav-icon,
+.rule-icon,
+.important-note-icon,
+.intro-icon,
+.ack-icon {
+    background: #ffffff !important;
+    border-color: rgba(0,0,0,.10) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,.14);
+}
+
+.nav-icon img,
+.rule-icon img,
+.important-note-icon img,
+.intro-icon img,
+.ack-icon img {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Navigation icons: varied colour frames */
+.nav-button:nth-child(1) .nav-icon { box-shadow: inset 0 0 0 3px rgba(59,130,246,.16), 0 8px 20px rgba(0,0,0,.14); }
+.nav-button:nth-child(2) .nav-icon { box-shadow: inset 0 0 0 3px rgba(139,92,246,.16), 0 8px 20px rgba(0,0,0,.14); }
+.nav-button:nth-child(3) .nav-icon { box-shadow: inset 0 0 0 3px rgba(20,184,166,.16), 0 8px 20px rgba(0,0,0,.14); }
+
+/* Rules: each card gets a different professional accent. */
+.rule-card {
+    --accent: #3b82f6;
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent) !important;
+    background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
+        linear-gradient(145deg, rgba(17,31,51,.94), rgba(8,16,28,.97)) !important;
+}
+
+.rule-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    border-radius: 24px 0 0 24px;
+    background: var(--accent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 40%, transparent);
+    content: "";
+}
+
+.rule-card:nth-child(1)  { --accent: var(--accent-blue); }
+.rule-card:nth-child(2)  { --accent: var(--accent-violet); }
+.rule-card:nth-child(3)  { --accent: var(--accent-cyan); }
+.rule-card:nth-child(4)  { --accent: var(--accent-orange); }
+.rule-card:nth-child(5)  { --accent: var(--accent-green); }
+.rule-card:nth-child(6)  { --accent: var(--accent-pink); }
+.rule-card:nth-child(7)  { --accent: var(--accent-indigo); }
+.rule-card:nth-child(8)  { --accent: var(--accent-teal); }
+.rule-card:nth-child(9)  { --accent: var(--accent-amber); }
+.rule-card:nth-child(10) { --accent: var(--accent-red); }
+.rule-card:nth-child(11) { --accent: var(--accent-lime); }
+.rule-card:nth-child(12) { --accent: var(--accent-sky); }
+.rule-card:nth-child(13) { --accent: var(--accent-purple); }
+.rule-card:nth-child(14) { --accent: var(--accent-rose); }
+
+.rule-card .rule-number {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    color: color-mix(in srgb, var(--accent) 82%, white);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 18%, transparent), rgba(7,15,27,.8));
+}
+
+.rule-card .rule-icon {
+    border-color: color-mix(in srgb, var(--accent) 35%, #000) !important;
+}
+
+.rule-card .rule-content h2 {
+    color: color-mix(in srgb, var(--accent) 74%, white) !important;
+}
+
+.rule-card .panel-label,
+.rule-card .auction-link,
+.rule-card .company-flow b,
+.rule-card .carat-notice b,
+.rule-card .highlight-box strong,
+.rule-card .rate-box strong,
+.rule-card .deadline-box strong {
+    color: color-mix(in srgb, var(--accent) 78%, white);
+}
+
+.rule-card .auction-link,
+.rule-card .highlight-box,
+.rule-card .rate-box,
+.rule-card .deadline-box > div {
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.rule-card .info-chip {
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.rule-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+    box-shadow:
+        0 22px 45px rgba(0,0,0,.27),
+        0 0 35px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* Important notes: nine separate accents. */
+.important-note {
+    --accent: #3b82f6;
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+    background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 35%),
+        linear-gradient(145deg, rgba(17,31,51,.93), rgba(7,15,27,.97)) !important;
+}
+
+.important-note:nth-child(1) { --accent: var(--accent-blue); }
+.important-note:nth-child(2) { --accent: var(--accent-cyan); }
+.important-note:nth-child(3) { --accent: var(--accent-amber); }
+.important-note:nth-child(4) { --accent: var(--accent-red); }
+.important-note:nth-child(5) { --accent: var(--accent-violet); }
+.important-note:nth-child(6) { --accent: var(--accent-green); }
+.important-note:nth-child(7) { --accent: var(--accent-pink); }
+.important-note:nth-child(8) { --accent: var(--accent-orange); }
+.important-note:nth-child(9) { --accent: var(--accent-indigo); }
+
+.important-note::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 16px 0 0 16px;
+    background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 38%, transparent);
+    content: "";
+}
+
+.important-note .important-note-number {
+    border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+    color: color-mix(in srgb, var(--accent) 80%, white);
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.important-note h2 {
+    color: color-mix(in srgb, var(--accent) 72%, white) !important;
+}
+
+.important-note:hover {
+    border-color: color-mix(in srgb, var(--accent) 48%, transparent) !important;
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.27),
+        0 0 30px color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+/* Keep danger notes visibly red without making the whole interface red. */
+.important-note.note-warning {
+    --accent: var(--accent-red);
+}
+
+/* Better colour hierarchy for shared UI elements. */
+.intro-panel {
+    border-left: 4px solid var(--accent-cyan);
+    background:
+        linear-gradient(90deg, rgba(6,182,212,.08), rgba(13,25,42,.76) 38%);
+}
+
+.acknowledgement-panel {
+    border-top: 4px solid var(--accent-green);
+    background:
+        radial-gradient(circle at 90% 20%, rgba(34,197,94,.10), transparent 20rem),
+        linear-gradient(145deg, rgba(19,37,61,.94), rgba(7,15,27,.97));
+}
+
+.appointment-section {
+    border-top: 4px solid var(--accent-violet);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(139,92,246,.10), transparent 25rem),
+        rgba(11,23,39,.86);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: rgba(139,92,246,.65);
+    box-shadow: 0 0 0 3px rgba(139,92,246,.10);
+}
+
+/* Make the main section surfaces less monochromatic. */
+.content-section[data-panel="terms"] .content-wrap {
+    --section-accent: #3b82f6;
+}
+
+.content-section[data-panel="notes"] .content-wrap {
+    --section-accent: #8b5cf6;
+}
+
+.notes-hero {
+    border-color: rgba(139,92,246,.40);
+    background:
+        radial-gradient(circle at 82% 50%, rgba(139,92,246,.15), transparent 19rem),
+        linear-gradient(135deg, rgba(22,31,57,.98), rgba(7,12,24,.98));
+}
+
+.notes-hero h1 span {
+    color: #b89cff;
+}
+
+@media (max-width: 760px) {
+    .rule-card::before,
+    .important-note::before {
+        width: 3px;
+    }
+
+    .rule-card,
+    .important-note {
+        border-radius: 18px;
+    }
+}
+
+/* Graceful fallback for browsers without color-mix. */
+@supports not (color: color-mix(in srgb, red 50%, white)) {
+    .rule-card,
+    .important-note {
+        border-color: rgba(255,255,255,.12) !important;
+    }
+}
+
+
+/* =========================================================
+   KIRA LIGHT CORPORATE THEME
+   White + Dark Navy + Multi-Accent
+   ========================================================= */
+
+/* Global surfaces and typography */
+body {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(37,99,235,.07), transparent 25rem),
+        radial-gradient(circle at 90% 15%, rgba(8,145,178,.06), transparent 25rem),
+        #f7faff !important;
+    color: var(--text-dark) !important;
+}
+
+header,
+.navbar,
+.site-header,
+nav {
+    background: rgba(255,255,255,.96) !important;
+    color: var(--navy-950) !important;
+    border-bottom: 1px solid var(--border-blue) !important;
+    box-shadow: 0 8px 28px rgba(10,27,51,.08) !important;
+}
+
+a {
+    color: var(--navy-700);
+}
+
+a:hover {
+    color: var(--accent-blue);
+}
+
+/* Hero / banner */
+.hero,
+.hero-section,
+.page-hero,
+.notes-hero {
+    background:
+        linear-gradient(135deg, rgba(6,19,38,.98), rgba(14,39,72,.96) 55%, rgba(23,85,143,.92)) !important;
+    color: #ffffff !important;
+    border-color: rgba(37,99,235,.35) !important;
+}
+
+.hero h1,
+.hero h2,
+.hero h3,
+.hero p,
+.page-hero h1,
+.page-hero p,
+.notes-hero h1,
+.notes-hero p {
+    color: #ffffff !important;
+}
+
+.notes-hero h1 span {
+    color: #7dd3fc !important;
+}
+
+/* Main content sections */
+.content-section,
+section {
+    color: var(--text-dark);
+}
+
+.content-section:nth-of-type(even) {
+    background: #ffffff !important;
+}
+
+.content-section:nth-of-type(odd) {
+    background: #f4f8fd !important;
+}
+
+/* Intro / acknowledgement / appointment areas */
+.intro-panel {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-left: 5px solid var(--accent-cyan) !important;
+    background: linear-gradient(100deg, #ffffff, #eef8fb) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+.acknowledgement-panel {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-top: 5px solid var(--accent-green) !important;
+    background: linear-gradient(135deg, #ffffff, #effaf6) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+.appointment-section {
+    color: var(--text-dark) !important;
+    border: 1px solid #cbd9ea !important;
+    border-top: 5px solid var(--accent-violet) !important;
+    background: linear-gradient(135deg, #ffffff, #f4efff) !important;
+    box-shadow: 0 12px 30px rgba(10,27,51,.08) !important;
+}
+
+/* Rule cards: clean white cards, dark-blue text, unique accent */
+.rule-card {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #d5e0ed !important;
+    box-shadow: 0 12px 28px rgba(10,27,51,.08) !important;
+}
+
+.rule-card::before {
+    width: 6px;
+    background: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+.rule-card .rule-number {
+    background: var(--surface-blue) !important;
+    color: var(--accent) !important;
+    border: 2px solid color-mix(in srgb, var(--accent) 35%, white) !important;
+}
+
+.rule-card .rule-content h2,
+.rule-card .rule-content h3 {
+    color: var(--navy-800) !important;
+}
+
+.rule-card p,
+.rule-card li,
+.rule-card .rule-content {
+    color: #3f536c !important;
+}
+
+.rule-card .panel-label,
+.rule-card .auction-link,
+.rule-card .company-flow b,
+.rule-card .carat-notice b,
+.rule-card .highlight-box strong,
+.rule-card .rate-box strong,
+.rule-card .deadline-box strong {
+    color: var(--accent) !important;
+}
+
+.rule-card .auction-link,
+.rule-card .highlight-box,
+.rule-card .rate-box,
+.rule-card .deadline-box > div,
+.rule-card .info-chip {
+    background: color-mix(in srgb, var(--accent) 6%, white) !important;
+    border-color: color-mix(in srgb, var(--accent) 25%, white) !important;
+}
+
+.rule-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent) 50%, #d5e0ed) !important;
+    box-shadow: 0 18px 38px rgba(10,27,51,.13) !important;
+}
+
+/* Important notes: white cards with individual accent colours */
+.important-note {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #d5e0ed !important;
+    box-shadow: 0 10px 25px rgba(10,27,51,.07) !important;
+}
+
+.important-note::before {
+    width: 5px;
+    background: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+.important-note h2,
+.important-note h3 {
+    color: var(--navy-800) !important;
+}
+
+.important-note p,
+.important-note li {
+    color: #4b6078 !important;
+}
+
+.important-note .important-note-number {
+    color: var(--accent) !important;
+    background: color-mix(in srgb, var(--accent) 7%, white) !important;
+    border-color: color-mix(in srgb, var(--accent) 30%, white) !important;
+}
+
+.important-note:hover {
+    border-color: color-mix(in srgb, var(--accent) 42%, #d5e0ed) !important;
+    box-shadow: 0 16px 34px rgba(10,27,51,.11) !important;
+}
+
+/* Black SVG icons stay on white boxes */
+.nav-icon,
+.rule-icon,
+.important-note-icon,
+.intro-icon,
+.ack-icon {
+    background: #ffffff !important;
+    border: 1px solid #d7e1ed !important;
+    box-shadow: 0 5px 14px rgba(10,27,51,.10) !important;
+}
+
+.nav-icon img,
+.rule-icon img,
+.important-note-icon img,
+.intro-icon img,
+.ack-icon img {
+    background: #ffffff !important;
+    filter: none !important;
+}
+
+/* Form */
+.field label,
+.form-label {
+    color: var(--navy-800) !important;
+}
+
+.field input,
+.field select,
+.field textarea {
+    color: var(--text-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd9ea !important;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #8493a6 !important;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.10) !important;
+}
+
+/* Buttons */
+button,
+.btn,
+.cta,
+.primary-btn {
+    background: linear-gradient(135deg, var(--navy-800), var(--accent-blue)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 8px 18px rgba(23,85,143,.20) !important;
+}
+
+button:hover,
+.btn:hover,
+.cta:hover,
+.primary-btn:hover {
+    background: linear-gradient(135deg, var(--navy-700), #1d4ed8) !important;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: var(--navy-950) !important;
+    color: #dbeafe !important;
+    border-top: 4px solid var(--accent-blue) !important;
+}
+
+footer a {
+    color: #93c5fd !important;
+}
+
+/* Tables / badges / small UI */
+table {
+    background: #ffffff !important;
+    color: var(--text-dark) !important;
+    border-color: #d5e0ed !important;
+}
+
+th {
+    background: var(--navy-800) !important;
+    color: #ffffff !important;
+}
+
+td {
+    border-color: #dbe5f0 !important;
+}
+
+.badge,
+.tag,
+.chip {
+    background: var(--surface-blue-2) !important;
+    color: var(--navy-700) !important;
+    border-color: #cbd9ea !important;
+}
+
+/* Better mobile contrast */
+@media (max-width: 760px) {
+    body {
+        background: #f7faff !important;
+    }
+
+    .rule-card,
+    .important-note,
+    .intro-panel,
+    .acknowledgement-panel,
+    .appointment-section {
+        box-shadow: 0 8px 22px rgba(10,27,51,.07) !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="app-shell">
+
+    <aside class="sidebar" id="sidebar" aria-label="KIRA Auction navigation">
+
+        <div class="sidebar-brand">
+            <a href="#terms" data-home>
+                <img src="assets/kira.png" alt="KIRA Diam Tech" class="sidebar-logo">
+                <span class="sidebar-brand-copy">
+                    <strong>DIAM TECH</strong>
+                    <span>AUCTION</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="sidebar-heading">
+            <span>Auction Agreement</span>
+        </div>
+
+        <nav class="agreement-navigation" aria-label="Agreement sections">
+
+            <button
+                class="nav-button active"
+                type="button"
+                data-target="terms"
+                aria-controls="terms"
+                aria-selected="true"
+            >
+                <span class="nav-number">01</span>
+                <span class="nav-icon">
+                    <img src="assets/icon-auction.svg" alt="">
+                </span>
+                <span class="nav-text">
+                    <strong>Terms &</strong>
+                    <span>Conditions</span>
+                </span>
+                <span class="nav-arrow">→</span>
+            </button>
+
+            <button
+                class="nav-button"
+                type="button"
+                data-target="notes"
+                aria-controls="notes"
+                aria-selected="false"
+            >
+                <span class="nav-number">02</span>
+                <span class="nav-icon">
+                    <img src="assets/icon-penalty.svg" alt="">
+                </span>
+                <span class="nav-text">
+                    <strong>Important</strong>
+                    <span>Notes</span>
+                </span>
+                <span class="nav-arrow">→</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="official-status">
+                <span class="status-dot"></span>
+                <span>Official Auction Rules</span>
+            </div>
+            <p>
+                Please read all auction rules carefully before participating in the KIRA Auction.
+            </p>
+        </div>
+
+    </aside>
+
+    <main class="main-content" id="main-content">
+
+        <header class="top-header">
+
+            <div class="header-left">
+                <span class="header-kira">KIRA AUCTION</span>
+                <span class="header-divider"></span>
+                <span class="header-title">Legal Agreement & Participation Guidelines</span>
+            </div>
+
+            <div class="header-right">
+
+                <a href="appointment.html" class="official-pill">
+                    Book Appointment
+                </a>
+
+                <span class="official-pill">
+                    Official Terms
+                </span>
+
+                <span class="header-profile" aria-hidden="true">
+                    <span>
+                        <span class="profile-head"></span>
+                        <span class="profile-body"></span>
+                    </span>
+                </span>
+
+                <button
+                    class="mobile-toggle"
+                    id="mobileToggle"
+                    type="button"
+                    aria-label="Open navigation"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- TERMS -->
+
+        <section
+            class="content-section active"
+            id="terms"
+            data-panel="terms"
+            aria-hidden="false"
+            aria-labelledby="terms-title"
+        >
+
+            <div class="content-wrap">
+
+                <div class="hero">
+
+                    <div class="hero-copy reveal">
+
+                        <span class="section-kicker">
+                            01 / TERMS & CONDITIONS
+                        </span>
+
+                        <h1 id="terms-title">
+                            KIRA Auction
+                            <span>નિયમ અને શરતો</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Please carefully read and understand all auction rules,
+                            payment conditions, delivery requirements, responsibilities
+                            and penalties before participating.
+                        </p>
+
+                        <div class="hero-meta">
+
+                            <div class="meta-item">
+                                <strong>14</strong>
+                                <span>Core Rules</span>
+                            </div>
+
+                            <span class="meta-line"></span>
+
+                            <div class="meta-item">
+                                <strong>09</strong>
+                                <span>Payment Days</span>
+                            </div>
+
+                            <span class="meta-line"></span>
+
+                            <div class="meta-item">
+                                <strong>2%</strong>
+                                <span>Monthly Interest</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-visual reveal">
+
+                        <div class="hero-glow"></div>
+                        <div class="ring-graphic"></div>
+                        <div class="ring-graphic ring-outer"></div>
+
+                        <div class="hero-core">
+                            <img
+                                src="assets/hero-gavel-3d.png"
+                                alt="KIRA Auction Gavel"
+                                class="hero-gavel"
+                            >
+                        </div>
+
+                        <div class="hero-badge">
+                            <small>OFFICIAL</small>
+                            <strong>KIRA AUCTION</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="intro-panel reveal">
+
+                    <div class="intro-icon">
+                        <img src="assets/icon-auction.svg" alt="">
+                    </div>
+
+                    <div>
+                        <span class="panel-label">IMPORTANT</span>
+                        <p>
+                            Participation in the KIRA Auction confirms that the client
+                            and/or broker has read, understood and agreed to all the
+                            rules and conditions mentioned below.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="rules-container">
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">01</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-auction.svg" alt="Auction">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Auction Price & Online Bidding</h2>
+
+                            <div class="gujarati-text">
+                                ઓકશનમાં ભરેલા ભાવ નેટ રોકડા માં રહેશે.
+                                ઓકશન ઓનલાઈન અને US$ ડોલર ભાવમાં ભરવાનુ રહેશે.
+                            </div>
+
+                            <div class="english-text">
+                                The Auctioned Price Will Be In Net Cash.
+                                The Auction will be online and in USD.
+                            </div>
+
+                            <a
+                                href="http://35.198.239.4"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="auction-link"
+                            >
+                                Open KIRA Online Auction →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">02</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-deadline.svg" alt="Payment Deadline">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Payment Deadline & Interest</h2>
+
+                            <div class="highlight-grid">
+                                <div class="highlight-box">
+                                    <strong>9 DAYS</strong>
+                                    <span>Full payment deadline</span>
+                                </div>
+
+                                <div class="highlight-box">
+                                    <strong>2.00%</strong>
+                                    <span>Interest per month</span>
+                                </div>
+                            </div>
+
+                            <div class="gujarati-text">
+                                ઓક્શન બંધ થયા પછી જીતેલા માલની સંપૂર્ણ રકમ
+                                ૯ દિવસમાં ભરવાની રહેશે. અને ૯ દિવસ
+                                (રવિવાર તેમજ અન્ય રજા સાથે) કરતા વધારે દિવસ
+                                થશે તો કંપનીના નિયમ મુજબ ૨.00% પ્રતિ મહિના
+                                પ્રમાણે વ્યાજ ગણવામાં આવશે. ૯ દિવસ કરતા વધારે
+                                દિવસ થશે તો તેનું વ્યાજ ઓક્શનના દિવસથી જ ગણવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                The Full Amount Of The Won Goods Has To Be Paid
+                                Within 9 Days, including Sunday and all other holidays,
+                                after the auction closes. If payment is delayed more
+                                than 9 days, interest will be charged at 2.00% per month.
+                                If it exceeds 9 days, the interest will be calculated
+                                from the day of the auction itself.
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">03</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-delivery.svg" alt="Delivery">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Delivery After Payment Confirmation</h2>
+
+                            <div class="gujarati-text">
+                                કીરા માં કલાઈન્ટનું પેઈમેન્ટ કન્ફોર્મ થયા પછીના
+                                બીજા દિવસે બપોરે ૩ વાગ્યા પછી ડીલીવરી મળી જશે.
+                            </div>
+
+                            <div class="english-text">
+                                After confirmation of the payment from KIRA,
+                                delivery of the goods will be done on the next
+                                working day after 3 PM.
+                            </div>
+
+                            <div class="info-chip">
+                                DELIVERY · Next Working Day · After 3 PM
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">04</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-billing.svg" alt="Billing">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Full Payment & Bill Required</h2>
+
+                            <div class="gujarati-text">
+                                સંપુર્ણ પેઈમેન્ટ અને બીલ વગર ડિલીવરી મળશે નહી.
+                                કોઈ પણ કલાઈન્ટ કે બ્રોકર મિત્રો એ મેનેજમેન્ટ પાસે
+                                રોકડામાં પેમેન્ટ કરવાની વાત કે રજૂઆત પણ કરવી નહિ.
+                            </div>
+
+                            <div class="english-text">
+                                Delivery will not be possible without full payment
+                                and bill. No client or broker should talk to or
+                                suggest payment in cash to the management.
+                            </div>
+
+                            <div class="warning-chip">
+                                Full Payment + Bill Required
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">05</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-registration.svg" alt="Registration">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Client & Broker Eligibility</h2>
+
+                            <div class="gujarati-text">
+                                કલાઈન્ટ તેમજ બ્રોકર પાસે જો બીલ તેમજ ચેકની વ્યવસ્થા
+                                ન હોય તો તેમણે ઓક્શનમાં ભાગ લેવો નહિ.
+                            </div>
+
+                            <div class="english-text">
+                                The Client and the Broker should not participate
+                                in the auction if they do not have the arrangement
+                                of the bill and cheque.
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">06</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-currency.svg" alt="Currency">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>USD Billing & Exchange Rate</h2>
+
+                            <div class="gujarati-text">
+                                માલની સંપુર્ણ રકમ ડોલર બીલમાં ભરવાની રહેશે.
+                                ડોલર રેટ ઓકશનના દિવસનો RBI Ref Rate +૦.૦૫ પૈસા
+                                લેવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                The full amount of the goods has to be paid in
+                                dollar bill. The dollar rate will be charged at
+                                the RBI Ref Rate + 0.05 Paise on the day of the auction.
+                            </div>
+
+                            <div class="rate-box">
+                                <span>AUCTION DAY RATE</span>
+                                <strong>RBI Ref Rate + 0.05</strong>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">07</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-inspection.svg" alt="Inspection">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Inspection & Client Responsibility</h2>
+
+                            <div class="gujarati-text">
+                                માલ જોતા સમયે કોઈપણ જાતની ભુલ થશે તો તેની
+                                સંપુર્ણ જવાબદારી જોવા આવેલ કલાઈન્ટની રહેશે.
+                                હર એક જોવા આવેલ કલાઈન્ટએ પોતે માલની ચકાસણી
+                                (સાઈઝ અને કટ) કરી લેવી.
+                            </div>
+
+                            <div class="english-text">
+                                In the event of any mistake while viewing the goods,
+                                the entire responsibility will be borne by the visiting
+                                client. Every visiting client must check the goods,
+                                including size and cut, properly.
+                            </div>
+
+                            <div class="inspection-points">
+                                <span>✓ Size</span>
+                                <span>✓ Cut</span>
+                                <span>✓ Goods Verification</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">08</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-auction.svg" alt="Auction">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Previous Round Bid</h2>
+
+                            <div class="gujarati-text">
+                                તમને અગાઉ ના રાઉન્ડ ના ભાવથી પણ WIN આવી શકે
+                                જો તમે અગાઉના રાઉન્ડમાં બીડ કરેલ હશે તો.
+                            </div>
+
+                            <div class="english-text">
+                                You can also win from the price of the previous
+                                round if you have bid in the previous round.
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">09</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-auction.svg" alt="Bidding Priority">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>First Saved Bid Priority</h2>
+
+                            <div class="gujarati-text">
+                                કોઈપણ રાઉન્ડમાં જે કલાઈન્ટ પહેલા બીડ ભરીને સેવ
+                                કરેલી હશે, તેમનો વિન થવાનો ચાન્સ પહેલા રહેશે.
+                            </div>
+
+                            <div class="english-text">
+                                In any round, the client that bids and saves
+                                first will have the first chance to win.
+                            </div>
+
+                            <div class="priority-badge">
+                                FIRST SAVED BID = FIRST CHANCE
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">10</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-inspection.svg" alt="Carat Inspection">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Approximate Carats</h2>
+
+                            <div class="gujarati-text">
+                                ઓક્શન માં બતાવેલા બધા કેરેટ્સ અંદાજીત હોય છે.
+                                ડીલીવરી સમયે ફાયનલ કેરેટ્સ આપવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                All carats shown in the auction are approximate.
+                                Final carats will be given at the time of delivery.
+                            </div>
+
+                            <div class="carat-notice">
+                                <span>AUCTION</span>
+                                <span>Approximate Carats</span>
+                                <b>→</b>
+                                <span>DELIVERY</span>
+                                <span>Final Carats</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card rule-danger reveal">
+
+                        <div class="rule-number">11</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-penalty.svg" alt="Penalty">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <div class="danger-label">IMPORTANT PENALTY</div>
+
+                            <h2>Winning Client Must Take The Goods</h2>
+
+                            <div class="penalty-highlight">
+                                <strong>50%</strong>
+                                <span>Penalty of the won goods amount</span>
+                            </div>
+
+                            <div class="gujarati-text">
+                                વિજેતા કલાઈન્ટએ માલ ફરજીયાત લેવાનો રહેશે.
+                                જો કોઈ વિજેતા કલાઈન્ટ માલ લેવામાં આનાકાની કરે
+                                તો, તે કલાઈન્ટએ જીતેલા માલની રકમના ૫૦% પેનલ્ટી
+                                ભરવાની રહેશે. અને તે કલાઈન્ટ તથા બ્રોકર ને દરેક
+                                ઓક્શન મા બ્લેક લીસ્ટ કરી દેવામાં આવશે.
+                                અને તે કલાઈન્ટ તથા બ્રોકર ભવિષ્યના ઓકશનમાં
+                                ભાગ લઇ શકશે નહિ.
+                            </div>
+
+                            <div class="english-text">
+                                The winning client will have to take the goods
+                                compulsorily. If any winning client is unwilling
+                                to take the goods, then a penalty of 50% of the
+                                amount has to be paid. Both the client and the broker
+                                will be blacklisted and they will not be able to
+                                participate in future auctions.
+                            </div>
+
+                            <div class="blacklist-warning">
+                                ⚠ Client + Broker → Blacklisted
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card rule-danger reveal">
+
+                        <div class="rule-number">12</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-deadline.svg" alt="Penalty Deadline">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Penalty Payment Deadline</h2>
+
+                            <div class="gujarati-text">
+                                પેનલ્ટી ની રકમ ઓક્શન બંધ થયા પછી ના ૯ દિવસ
+                                સુધીમાં જમા કરી દેવાની રહેશે. ૯ દિવસ કરતા વધારે
+                                દિવસ થશે તો કંપનીના નિયમ મુજબ ૨.00% પ્રતિ મહિના
+                                પ્રમાણે વ્યાજ ગણવામાં આવશે. ૯ દિવસ કરતા વધારે
+                                થશે તેનું વ્યાજ ઓક્શનના દિવસથી જ ગણવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                The full amount of penalty has to be paid within
+                                9 days after the auction closes. If the period
+                                exceeds 9 days, interest will be charged at
+                                2.00% per month as per company rules. If it
+                                exceeds 9 days, interest will be calculated
+                                from the day of the auction itself.
+                            </div>
+
+                            <div class="deadline-box">
+
+                                <div>
+                                    <span>DEADLINE</span>
+                                    <strong>9 Days</strong>
+                                </div>
+
+                                <div>
+                                    <span>DELAY CHARGE</span>
+                                    <strong>2.00% / Month</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">13</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-billing.svg" alt="Billing Company">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Registration & Billing Company</h2>
+
+                            <div class="gujarati-text">
+                                જે કંપની માંથી રજીસ્ટ્રેશન કરવામાં આવશે
+                                તે જ કંપની માં બિલ બનાવવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                The bill will be made in the same company
+                                from which the registration will be done.
+                            </div>
+
+                            <div class="company-flow">
+                                <span>REGISTRATION COMPANY</span>
+                                <b>→</b>
+                                <span>BILLING COMPANY</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="rule-card reveal">
+
+                        <div class="rule-number">14</div>
+
+                        <div class="rule-icon">
+                            <img src="assets/icon-brokerage.svg" alt="Brokerage">
+                        </div>
+
+                        <div class="rule-content">
+
+                            <h2>Brokerage Responsibility</h2>
+
+                            <div class="gujarati-text">
+                                ઓક્શન માં વિન થયેલ કોઈ પણ આર્ટીકલની દલાલી,
+                                લેનાર કલાઈન્ટએ આપવાની રહેશે.
+                            </div>
+
+                            <div class="english-text">
+                                The brokerage for any article won in the auction
+                                will have to be paid by the buyer client.
+                            </div>
+
+                            <div class="buyer-badge">
+                                BUYER CLIENT PAYS BROKERAGE
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="panel-switch reveal">
+
+                    <div>
+                        <strong>IMPORTANT NOTES</strong>
+                        <span>Review additional auction conditions and acknowledgement terms.</span>
+                    </div>
+
+                    <button class="btn-gold" type="button" data-target="notes">
+                        View Important Notes →
+                    </button>
+
+                </div>
+
+                <div class="appointment-section reveal" id="appointment">
+
+                    <span class="section-kicker">BOOK APPOINTMENT</span>
+
+                    <h2>Schedule Your KIRA Appointment</h2>
+
+                    <p>
+                        Fill in the details below to prepare an appointment request.
+                    </p>
+
+                    <form id="appointmentForm">
+
+                        <div class="appointment-grid">
+
+                            <div class="field">
+                                <label for="appointmentName">Full Name</label>
+                                <input id="appointmentName" name="name" type="text" required>
+                            </div>
+
+                            <div class="field">
+                                <label for="appointmentCompany">Company</label>
+                                <input id="appointmentCompany" name="company" type="text">
+                            </div>
+
+                            <div class="field">
+                                <label for="appointmentDate">Preferred Date</label>
+                                <input id="appointmentDate" name="date" type="date" required>
+                            </div>
+
+                            <div class="field">
+                                <label for="appointmentTime">Preferred Time</label>
+                                <input id="appointmentTime" name="time" type="time" required>
+                            </div>
+
+                            <div class="field full">
+                                <label for="appointmentMessage">Message</label>
+                                <textarea id="appointmentMessage" name="message" placeholder="Tell us briefly about your appointment requirement."></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="appointment-actions">
+
+                            <button type="submit" class="btn-gold">
+                                Submit Appointment Request
+                            </button>
+
+                            <button type="button" class="btn-outline" id="appointmentBack">
+                                Back To Terms
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="appointment-message"
+                            id="appointmentSuccess"
+                            role="status"
+                            aria-live="polite"
+                        >
+                            Appointment request prepared successfully. Please contact KIRA management through your official communication channel to confirm the appointment.
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <footer class="content-footer">
+
+                    <img
+                        src="assets/kira.png"
+                        alt="KIRA Diam Tech"
+                        class="footer-logo"
+                    >
+
+                    <p>
+                        KIRA Auction · Official Terms & Conditions
+                    </p>
+
+                    <span>
+                        © <span data-current-year></span> · Please read carefully before participating.
+                    </span>
+
+                </footer>
+
+            </div>
+
+        </section>
+
+        <!-- NOTES -->
+
+        <section
+            class="content-section"
+            id="notes"
+            data-panel="notes"
+            aria-hidden="true"
+            aria-labelledby="notes-title"
+        >
+
+            <div class="content-wrap">
+
+                <div class="notes-hero">
+
+                    <div class="notes-hero-copy reveal">
+
+                        <span class="section-kicker">
+                            02 / IMPORTANT NOTES
+                        </span>
+
+                        <h1 id="notes-title">
+                            Important
+                            <span>Notes</span>
+                        </h1>
+
+                        <p>
+                            Please carefully review these additional conditions
+                            before participating in the KIRA Auction.
+                        </p>
+
+                    </div>
+
+                    <div class="notes-hero-visual reveal">
+
+                        <div class="notes-orbit"></div>
+
+                        <img
+                            src="assets/hero-gavel-3d.png"
+                            alt="KIRA Auction"
+                            class="notes-gavel"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="important-notes-grid">
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">01</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-currency.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Estimated Total Bid Amount</h2>
+
+                            <div class="gujarati-text">
+                                બતાવેલ ટોટલ બીડ અમાઉન્ટ એ એસ્ટિમેટેડ છે,
+                                તે ફાઇનલ નથી.
+                            </div>
+
+                            <div class="english-text">
+                                The total bid amount shown is estimated,
+                                not final.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">02</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-inspection.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Carat Information</h2>
+
+                            <div class="gujarati-text">
+                                દરેક કાપણના કેરેટ બતાવવામાં આવશે પાછળના
+                                સેન્ટ બતાવવામાં આવશે નહી.
+                            </div>
+
+                            <div class="english-text">
+                                Each cut's carat will be shown;
+                                the rear cent will not be shown.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">03</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-auction.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Reserve Price</h2>
+
+                            <div class="gujarati-text">
+                                તમારી બીડ પ્રાઇઝ અને અમારી રિઝર્વ પ્રાઇઝ
+                                મેચ ના થાય તો તે માલ વિડ્રોલ કરવામાં આવશે.
+                            </div>
+
+                            <div class="english-text">
+                                If your bid price and our reserve price do
+                                not match, the goods will be withdrawn.
+                            </div>
+
+                            <div class="withdrawal-badge">
+                                RESERVE PRICE MISMATCH → WITHDRAWAL
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note note-warning reveal">
+
+                        <div class="important-note-number">04</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-penalty.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Rule Violation / False Complaint</h2>
+
+                            <div class="gujarati-text">
+                                જે કોઈ પણ કલાઈન્ટ કે બ્રોકર નિયમોનો ભંગ
+                                કરશે અથવા ખોટી ફરિયાદ કરશે તો તે કલાઈન્ટ
+                                કે બ્રોકર ભવિષ્યના કોઈ પણ ઓક્શનમાં ભાગ
+                                લઇ શકશે નહિ.
+                            </div>
+
+                            <div class="english-text">
+                                Any client or broker who violates the rules
+                                or makes a false complaint will not be allowed
+                                to participate in future auctions.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">05</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-auction.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>No Compromise On Auction Rules</h2>
+
+                            <div class="gujarati-text">
+                                ઓક્શન માટેના ઉપરોક્ત નિયમમાં કોઈપણ
+                                બાંધછોડ કરવામાં આવશે નહી જેની દરેક
+                                કલાઈન્ટ તેમજ બ્રોકર મિત્રો એ ખાસ નોંધ લેવી.
+                            </div>
+
+                            <div class="english-text">
+                                No compromise will be made in the above
+                                rules for the auction. Every client and
+                                broker should take special note of this.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">06</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-registration.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Agreement & Understanding</h2>
+
+                            <div class="gujarati-text">
+                                અમે ઓક્શન માટેના ઉપરના નિયમ ને પૂરેપૂરું
+                                સમજી ગયેલ છીએ અને અમે તેની સાથે સહમત છીએ.
+                            </div>
+
+                            <div class="english-text">
+                                We fully understand the above rules
+                                for the auction and we agree with them.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">07</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-client.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Participation Means Acceptance</h2>
+
+                            <div class="gujarati-text">
+                                જો કલાઈન્ટ ઓક્શન માં ભાગ લેશે તો એવું
+                                માનવામાં આવશે કે તેઓ ઉપરોક્ત તમામ નિયમ
+                                બરાબર સમજ્યા છે અને એની સાથે સહમત છે.
+                            </div>
+
+                            <div class="english-text">
+                                Your participation in the auction confirms
+                                that you have fully understood and agree
+                                with all the above auction rules.
+                            </div>
+
+                            <div class="acceptance-badge">
+                                PARTICIPATION = ACCEPTANCE
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note note-warning reveal">
+
+                        <div class="important-note-number">08</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-penalty.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>If You Do Not Agree</h2>
+
+                            <div class="gujarati-text">
+                                જો તમે ઉપરોક્ત નિયમ સાથે સહમત નથી
+                                તો ઓક્શન માં ભાગ લેવો નહિ.
+                            </div>
+
+                            <div class="english-text">
+                                If you do not agree with any of the
+                                above rules, please do not participate
+                                in the auction.
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="important-note reveal">
+
+                        <div class="important-note-number">09</div>
+
+                        <div class="important-note-icon">
+                            <img src="assets/icon-registration.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Management Rights</h2>
+
+                            <div class="gujarati-text">
+                                મેનેજમેન્ટ દ્વારા ઉપરોક્ત નિયમમાં કોઈ પણ
+                                સમયે ફેરફાર કરી શકશે.
+                            </div>
+
+                            <div class="english-text">
+                                The management reserves the right to
+                                change the above rules without any notice
+                                at any time.
+                            </div>
+
+                            <div class="management-badge">
+                                MANAGEMENT RESERVES THE RIGHT TO MODIFY
+                            </div>
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="acknowledgement-panel reveal">
+
+                    <div class="ack-icon">
+                        <img src="assets/icon-auction.svg" alt="">
+                    </div>
+
+                    <div class="ack-content">
+
+                        <span>FINAL ACKNOWLEDGEMENT</span>
+
+                        <h2>Please Read Before Participating</h2>
+
+                        <p class="gujarati-text">
+                            અમે ઓક્શન માટેના ઉપરના નિયમ ને પૂરેપૂરું
+                            સમજી ગયેલ છીએ અને અમે તેની સાથે સહમત છીએ.
+                        </p>
+
+                        <p class="english-text">
+                            We fully understand the above rules for
+                            the auction and we agree with them.
+                        </p>
+
+                        <p class="ack-warning">
+                            By participating in the KIRA Auction, you confirm
+                            that you have read, understood and accepted the
+                            applicable auction rules.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-switch reveal">
+
+                    <div>
+                        <strong>TERMS & CONDITIONS</strong>
+                        <span>Return to the complete KIRA auction rules.</span>
+                    </div>
+
+                    <button class="btn-gold" type="button" data-target="terms">
+                        ← View Terms & Conditions
+                    </button>
+
+                </div>
+
+                <footer class="content-footer">
+
+                    <img
+                        src="assets/kira.png"
+                        alt="KIRA Diam Tech"
+                        class="footer-logo"
+                    >
+
+                    <p>
+                        KIRA Auction · Important Notes
+                    </p>
+
+                    <span>
+                        © <span data-current-year></span>
+                    </span>
+
+                </footer>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const state = {
+        activePanel: "terms",
+        isMobile: window.innerWidth <= 760
+    };
+
+    const panelElements = Array.from(
+        document.querySelectorAll("[data-panel]")
+    );
+
+    const navigationElements = Array.from(
+        document.querySelectorAll("[data-target]")
+    );
+
+    const sidebar = document.getElementById("sidebar");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mobileOverlay = document.getElementById("mobileOverlay");
+
+    function normalizeTarget(value) {
+        if (typeof value !== "string") {
+            return "";
+        }
+
+        return value
+            .trim()
+            .replace(/^#/, "");
+    }
+
+    function getPanel(identifier) {
+        const target = normalizeTarget(identifier);
+
+        if (!target) {
+            return null;
+        }
+
+        const direct = document.getElementById(target);
+
+        if (
+            direct &&
+            direct.hasAttribute("data-panel")
+        ) {
+            return direct;
+        }
+
+        return panelElements.find(function (panel) {
+            return (
+                panel.id === target ||
+                panel.getAttribute("data-panel") === target
+            );
+        }) || null;
+    }
+
+    function getNavigationTarget(element) {
+        if (!element) {
+            return "";
+        }
+
+        const dataTarget = element.getAttribute("data-target");
+
+        if (dataTarget) {
+            return normalizeTarget(dataTarget);
+        }
+
+        const href = element.getAttribute("href");
+
+        if (href && href.startsWith("#")) {
+            return normalizeTarget(href);
+        }
+
+        const ariaControls = element.getAttribute("aria-controls");
+
+        if (ariaControls) {
+            return normalizeTarget(ariaControls);
+        }
+
+        return "";
+    }
+
+    function updateNavigation(panelId) {
+        navigationElements.forEach(function (element) {
+
+            const target = getNavigationTarget(element);
+
+            const isActive = target === panelId;
+
+            if (element.classList.contains("nav-button")) {
+                element.classList.toggle("active", isActive);
+            }
+
+            if (element.hasAttribute("aria-selected")) {
+                element.setAttribute(
+                    "aria-selected",
+                    isActive ? "true" : "false"
+                );
+            }
+
+        });
+    }
+
+    function resetRevealAnimations(panel) {
+
+        if (!panel) {
+            return;
+        }
+
+        const revealElements = Array.from(
+            panel.querySelectorAll(".reveal")
+        );
+
+        revealElements.forEach(function (element, index) {
+
+            element.classList.remove("visible");
+
+            element.style.transitionDelay =
+                Math.min(index * 45, 550) + "ms";
+
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    element.classList.add("visible");
+                });
+            });
+
+        });
+
+    }
+
+    function showPanel(identifier, updateHash) {
+
+        const panel = identifier instanceof HTMLElement
+            ? identifier
+            : getPanel(identifier);
+
+        if (!panel) {
+            return false;
+        }
+
+        const panelId =
+            panel.id ||
+            panel.getAttribute("data-panel");
+
+        panelElements.forEach(function (currentPanel) {
+
+            const isActive = currentPanel === panel;
+
+            currentPanel.classList.toggle(
+                "active",
+                isActive
+            );
+
+            currentPanel.setAttribute(
+                "aria-hidden",
+                isActive ? "false" : "true"
+            );
+
+            if (isActive) {
+                currentPanel.removeAttribute("hidden");
+            } else {
+                currentPanel.setAttribute("hidden", "");
+            }
+
+        });
+
+        state.activePanel = panelId;
+
+        updateNavigation(panelId);
+        resetRevealAnimations(panel);
+
+        if (updateHash !== false) {
+
+            const currentHash =
+                window.location.hash.replace(/^#/, "");
+
+            if (currentHash !== panelId) {
+
+                history.replaceState(
+                    null,
+                    "",
+                    "#" + panelId
+                );
+
+            }
+
+        }
+
+        closeMobileSidebar();
+
+        window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+                ? "auto"
+                : "smooth"
+        });
+
+        return true;
+    }
+
+    function initializePanels() {
+
+        let initialPanel = null;
+
+        const hashTarget =
+            normalizeTarget(
+                window.location.hash
+            );
+
+        if (hashTarget) {
+            initialPanel = getPanel(hashTarget);
+        }
+
+        if (!initialPanel) {
+
+            initialPanel =
+                panelElements.find(function (panel) {
+                    return panel.classList.contains("active");
+                });
+
+        }
+
+        if (!initialPanel) {
+            initialPanel = panelElements[0];
+        }
+
+        if (initialPanel) {
+            showPanel(initialPanel, false);
+        }
+
+    }
+
+    function handleNavigation(event) {
+
+        const element = event.currentTarget;
+
+        const target =
+            getNavigationTarget(element);
+
+        if (!target) {
+            return;
+        }
+
+        const panel = getPanel(target);
+
+        if (!panel) {
+            return;
+        }
+
+        const isAnchor =
+            element.tagName.toLowerCase() === "a";
+
+        const href =
+            element.getAttribute("href");
+
+        if (
+            isAnchor &&
+            href &&
+            href.startsWith("#")
+        ) {
+            event.preventDefault();
+        }
+
+        showPanel(panel, true);
+    }
+
+    function initializeNavigation() {
+
+        navigationElements.forEach(function (element) {
+
+            element.addEventListener(
+                "click",
+                handleNavigation
+            );
+
+        });
+
+    }
+
+    function initializeKeyboardNavigation() {
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                const activeElement =
+                    document.activeElement;
+
+                const isTyping =
+                    activeElement &&
+                    (
+                        activeElement.tagName === "INPUT" ||
+                        activeElement.tagName === "TEXTAREA" ||
+                        activeElement.tagName === "SELECT"
+                    );
+
+                if (isTyping) {
+                    return;
+                }
+
+                if (
+                    event.key !== "ArrowLeft" &&
+                    event.key !== "ArrowRight" &&
+                    event.key !== "ArrowUp" &&
+                    event.key !== "ArrowDown"
+                ) {
+                    return;
+                }
+
+                const index =
+                    panelElements.findIndex(function (panel) {
+                        return (
+                            panel.id ===
+                            state.activePanel
+                        );
+                    });
+
+                if (index < 0) {
+                    return;
+                }
+
+                let nextIndex = index;
+
+                if (
+                    event.key === "ArrowRight" ||
+                    event.key === "ArrowDown"
+                ) {
+                    nextIndex =
+                        Math.min(
+                            panelElements.length - 1,
+                            index + 1
+                        );
+                }
+
+                if (
+                    event.key === "ArrowLeft" ||
+                    event.key === "ArrowUp"
+                ) {
+                    nextIndex =
+                        Math.max(
+                            0,
+                            index - 1
+                        );
+                }
+
+                if (nextIndex !== index) {
+
+                    event.preventDefault();
+
+                    showPanel(
+                        panelElements[nextIndex],
+                        true
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+    function initializeHashNavigation() {
+
+        window.addEventListener(
+            "hashchange",
+            function () {
+
+                const target =
+                    normalizeTarget(
+                        window.location.hash
+                    );
+
+                const panel =
+                    getPanel(target);
+
+                if (panel) {
+                    showPanel(panel, false);
+                }
+
+            }
+        );
+
+    }
+
+    function openMobileSidebar() {
+
+        if (!sidebar) {
+            return;
+        }
+
+        sidebar.classList.add("mobile-open");
+
+        if (mobileOverlay) {
+            mobileOverlay.classList.add("show");
+        }
+
+        if (mobileToggle) {
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+        }
+
+    }
+
+    function closeMobileSidebar() {
+
+        if (!sidebar) {
+            return;
+        }
+
+        sidebar.classList.remove("mobile-open");
+
+        if (mobileOverlay) {
+            mobileOverlay.classList.remove("show");
+        }
+
+        if (mobileToggle) {
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+    }
+
+    function initializeMobileMenu() {
+
+        if (mobileToggle) {
+
+            mobileToggle.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        sidebar.classList.contains(
+                            "mobile-open"
+                        );
+
+                    if (isOpen) {
+                        closeMobileSidebar();
+                    } else {
+                        openMobileSidebar();
+                    }
+
+                }
+            );
+
+        }
+
+        if (mobileOverlay) {
+
+            mobileOverlay.addEventListener(
+                "click",
+                closeMobileSidebar
+            );
+
+        }
+
+    }
+
+    function initializeHomeLinks() {
+
+        const homeLinks =
+            document.querySelectorAll(
+                "[data-home]"
+            );
+
+        homeLinks.forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    showPanel(
+                        "terms",
+                        true
+                    );
+
+                }
+            );
+
+        });
+
+    }
+
+    function initializeAppointment() {
+
+        const appointmentLinks =
+            document.querySelectorAll(
+                "[data-appointment-link]"
+            );
+
+        appointmentLinks.forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function (event) {
+
+                    const appointment =
+                        document.getElementById(
+                            "appointment"
+                        );
+
+                    if (!appointment) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    showPanel(
+                        "terms",
+                        true
+                    );
+
+                    setTimeout(
+                        function () {
+
+                            appointment.scrollIntoView({
+                                behavior:
+                                    window.matchMedia(
+                                        "(prefers-reduced-motion: reduce)"
+                                    ).matches
+                                        ? "auto"
+                                        : "smooth",
+                                block: "start"
+                            });
+
+                            const nameInput =
+                                document.getElementById(
+                                    "appointmentName"
+                                );
+
+                            if (nameInput) {
+                                nameInput.focus({
+                                    preventScroll: true
+                                });
+                            }
+
+                        },
+                        450
+                    );
+
+                }
+            );
+
+        });
+
+        const form =
+            document.getElementById(
+                "appointmentForm"
+            );
+
+        const success =
+            document.getElementById(
+                "appointmentSuccess"
+            );
+
+        if (form && success) {
+
+            form.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    success.classList.add("show");
+
+                    success.textContent =
+                        "Appointment request prepared successfully. Please contact KIRA management through your official communication channel to confirm the appointment.";
+
+                    success.scrollIntoView({
+                        behavior:
+                            window.matchMedia(
+                                "(prefers-reduced-motion: reduce)"
+                            ).matches
+                                ? "auto"
+                                : "smooth",
+                        block: "nearest"
+                    });
+
+                }
+            );
+
+        }
+
+        const backButton =
+            document.getElementById(
+                "appointmentBack"
+            );
+
+        if (backButton) {
+
+            backButton.addEventListener(
+                "click",
+                function () {
+
+                    showPanel(
+                        "terms",
+                        true
+                    );
+
+                }
+            );
+
+        }
+
+    }
+
+    function initializeCurrentYear() {
+
+        const year =
+            String(
+                new Date().getFullYear()
+            );
+
+        document
+            .querySelectorAll(
+                "[data-current-year]"
+            )
+            .forEach(function (element) {
+                element.textContent = year;
+            });
+
+    }
+
+    function initializeRevealObserver() {
+
+        const elements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+        if (
+            !("IntersectionObserver" in window)
+        ) {
+
+            elements.forEach(function (element) {
+                element.classList.add("visible");
+            });
+
+            return;
+        }
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px -30px 0px"
+                }
+            );
+
+        elements.forEach(function (element) {
+            observer.observe(element);
+        });
+
+    }
+
+    function initializeImageLoading() {
+
+        const images =
+            document.querySelectorAll("img");
+
+        images.forEach(function (image) {
+
+            function markLoaded() {
+                image.classList.add("image-loaded");
+            }
+
+            if (image.complete) {
+                markLoaded();
+            } else {
+                image.addEventListener(
+                    "load",
+                    markLoaded,
+                    {
+                        once: true
+                    }
+                );
+
+                image.addEventListener(
+                    "error",
+                    function () {
+                        image.classList.add(
+                            "image-error"
+                        );
+                    },
+                    {
+                        once: true
+                    }
+                );
+            }
+
+        });
+
+    }
+
+    function initializeParallax() {
+
+        const hero =
+            document.querySelector(
+                ".hero"
+            );
+
+        const gavel =
+            document.querySelector(
+                ".hero-gavel"
+            );
+
+        if (!hero || !gavel) {
+            return;
+        }
+
+        if (
+            window.innerWidth <= 780 ||
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
+            return;
+        }
+
+        let frame = null;
+
+        hero.addEventListener(
+            "pointermove",
+            function (event) {
+
+                const rect =
+                    hero.getBoundingClientRect();
+
+                const x =
+                    (event.clientX - rect.left) /
+                    rect.width;
+
+                const y =
+                    (event.clientY - rect.top) /
+                    rect.height;
+
+                const rotateY =
+                    (x - .5) * 7;
+
+                const rotateX =
+                    (y - .5) * -5;
+
+                if (frame) {
+                    cancelAnimationFrame(frame);
+                }
+
+                frame =
+                    requestAnimationFrame(
+                        function () {
+
+                            gavel.style.transform =
+                                "translate3d(" +
+                                ((x - .5) * 8) +
+                                "px," +
+                                ((y - .5) * 8) +
+                                "px,0) rotateX(" +
+                                rotateX +
+                                "deg) rotateY(" +
+                                rotateY +
+                                "deg)";
+
+                        }
+                    );
+
+            }
+        );
+
+        hero.addEventListener(
+            "pointerleave",
+            function () {
+
+                if (frame) {
+                    cancelAnimationFrame(frame);
+                }
+
+                gavel.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+
+    function initializeEscapeHandling() {
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+                    closeMobileSidebar();
+                }
+
+            }
+        );
+
+    }
+
+    function initializeResizeHandling() {
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                const wasMobile =
+                    state.isMobile;
+
+                state.isMobile =
+                    window.innerWidth <= 760;
+
+                if (
+                    wasMobile &&
+                    !state.isMobile
+                ) {
+                    closeMobileSidebar();
+                }
+
+            }
+        );
+
+    }
+
+    function initializeExternalApi() {
+
+        window.KiraAuction =
+            window.KiraAuction || {};
+
+        window.KiraAuction.showPanel =
+            showPanel;
+
+        window.KiraAuction.getPanel =
+            getPanel;
+
+        window.KiraAuction.getState =
+            function () {
+
+                return {
+                    activePanel:
+                        state.activePanel,
+                    panelCount:
+                        panelElements.length,
+                    mobile:
+                        state.isMobile
+                };
+
+            };
+
+    }
+
+    function initializePrintSupport() {
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    (event.ctrlKey || event.metaKey) &&
+                    event.key.toLowerCase() === "p"
+                ) {
+
+                    event.preventDefault();
+
+                    window.print();
+
+                }
+
+            }
+        );
+
+    }
+
+    initializePanels();
+    initializeNavigation();
+    initializeKeyboardNavigation();
+    initializeHashNavigation();
+    initializeMobileMenu();
+    initializeHomeLinks();
+    initializeAppointment();
+    initializeCurrentYear();
+    initializeRevealObserver();
+    initializeImageLoading();
+    initializeParallax();
+    initializeEscapeHandling();
+    initializeResizeHandling();
+    initializeExternalApi();
+    initializePrintSupport();
+
+});
+</script>
+
+</body>
 </html>
